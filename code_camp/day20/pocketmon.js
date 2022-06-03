@@ -48,7 +48,7 @@ nums	result
 /*
 기존 배열의 길이와 크게 상관하지 않고 종류를 가져오는 문제
 길이 / 2 보다 종류가 많으면 길이 / 2 리턴
-작으면 종류 만 리턴
+작으면 종류만 리턴
 
 set으로 해보자
 
@@ -59,4 +59,14 @@ function solution(nums) {
   let answer = new Set(nums);
 
   return answer.size >= nums.length / 2 ? nums.length / 2 : answer.size;
+}
+
+function solution(nums) {
+  let kindofPoketmon = [];
+  nums.forEach((x) => {
+    if (!kindofPoketmon.includes(x)) kindofPoketmon.push(x);
+  });
+
+  let max = nums.length / 2;
+  return kindofPoketmon.length <= max ? kindofPoketmon.length : max;
 }

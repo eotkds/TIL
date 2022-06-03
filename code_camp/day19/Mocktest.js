@@ -73,4 +73,31 @@ function solution(answers) {
   return answer.map((x, i) => x / Max + i).filter((x, i) => x === i + 1);
 }
 
-console.log(solution(answers));
+// 220603  다시 풀어보기
+// 문제이해가 틀렸다. 0을 받은사람을 제거하는것이 아니라 최대점수를 받은 사람을 불러 오는 것이고
+// 최대 점수가 같을 경우 순번 대로 불러오는 것이었다.
+function solution(answers) {
+  let num1 = [1, 2, 3, 4, 5];
+  let num2 = [2, 1, 2, 3, 2, 4, 2, 5];
+  let num3 = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5];
+
+  let score = [
+    [1, 0],
+    [2, 0],
+    [3, 0],
+  ];
+  // 한명씩 대조할 것인지, answers를 쭉 따라갈것인지.. count는?
+  answers.forEach((x, i) => {
+    if (x === num1[i % num1.length]) score[0][1]++;
+    if (x === num2[i % num2.length]) score[1][1]++;
+    if (x === num3[i % num3.length]) score[2][1]++;
+  });
+  //이제 0점일 경우 반영 x, 그 다음 등수를 나오는 배열 만들기
+  let max = Math.max(score[0][1], score[1][1], score[2][1]);
+  let answer = [];
+  score.map((x) => {
+    if (x[1] === max) return answer.push(x[0]);
+  });
+
+  return answer;
+}
