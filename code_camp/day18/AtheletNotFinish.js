@@ -92,4 +92,33 @@ let result = aaa.find((_) => !bbb[_]--);
 
 console.log(result);
 
-//test
+//220604
+function solution(participant, completion) {
+  let pp = participant;
+
+  for (key of completion) {
+    let idx = pp.indexOf(key);
+    pp.splice(idx, 1);
+  }
+  return pp[0];
+}
+
+//효율성 테스트 실패로 리팩토링
+function solution(participant, completion) {
+  let pp = participant;
+
+  completion.forEach((x) => {
+    pp.splice(pp.indexOf(x), 1);
+  });
+  return pp[0];
+}
+
+//효율성 테스트 리팩토링2 no 메소드
+/*
+참가자의 completion 횟수를 하려고 한다.
+그럼 참가자 1명당 reduce를 메소드 같은 것을 써야 한다.
+indexOf와 차이가 없다.
+
+중복값을 어떻게 잡을지가 고민이다.
+*/
+function solution(participant, completion) {}
