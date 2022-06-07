@@ -44,3 +44,25 @@ function solution(s) {
   });
   return answer;
 }
+
+//220607 리팩토링
+function solution(s) {
+  let answer = [];
+  s.split(" ").forEach((x) => {
+    let word = "";
+    word += x[0].toUpperCase();
+    word += x.substring(1).toLowerCase();
+    answer.push(word);
+  });
+
+  return answer.join(" ");
+}
+
+//런타임 에러로 인하여 리팩토링 - map 활용
+function solution(s) {
+  let answer = s
+    .split(" ")
+    .map((x) => x[0].toUpperCase() + x.substring(1).toLowerCase());
+
+  return answer.join(" ");
+}
