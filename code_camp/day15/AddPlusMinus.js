@@ -33,3 +33,14 @@ function solution(absolutes, signs) {
   }, 0);
   return answer;
 }
+
+//220608 리팩토링
+
+function solution(absolutes, signs) {
+  let answer = 0;
+  absolutes.forEach((x, i) => {
+    if (signs[i]) answer += x;
+    if (!signs[i]) answer += -x;
+  });
+  return answer;
+}

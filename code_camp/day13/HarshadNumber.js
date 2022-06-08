@@ -27,19 +27,19 @@ arr	return
 */
 
 function solution(x) {
-    let num = x +""
-let divisor = 0
-for(key of num){
-  divisor += Number(key)
-}
-    
-return !(num % divisor)
+  let num = x + "";
+  let divisor = 0;
+  for (key of num) {
+    divisor += Number(key);
+  }
+
+  return !(num % divisor);
 }
 
 //한줄 표현
 
-function Harshad(n){
-  return !(n % (n + "").split("").reduce((a, b) => +b + +a ));
+function Harshad(n) {
+  return !(n % (n + "").split("").reduce((a, b) => +b + +a));
 }
 
 // do while 문
@@ -48,11 +48,22 @@ function solution(x) {
   let num = x;
   let sum = 0;
   do {
-      sum += x%10;
-      x = Math.floor(x/10);
-  } while (x>0);
+    sum += x % 10;
+    x = Math.floor(x / 10);
+  } while (x > 0);
 
-  return !(num%sum);
+  return !(num % sum);
 }
 
 //do ~while 문은 나머지로 자리수를 통합한 것이다.
+
+//220608 리팩토링
+function solution(x) {
+  let numString = x + "";
+  let num = 0;
+  for (let i = 0; i < numString.length; i++) {
+    num += numString.charAt(i) * 1;
+  }
+
+  return x % num ? false : true;
+}
