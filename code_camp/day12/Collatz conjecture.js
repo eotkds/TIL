@@ -30,50 +30,61 @@ n	result
 */
 
 function solution(num) {
-    let answer = num
-		let count = 0
-		
-    
- for(let i = 1 ; count <=500 ; i++){
-   if(answer === 1) {
-     return  count
+  let answer = num;
+  let count = 0;
+
+  for (let i = 1; count <= 500; i++) {
+    if (answer === 1) {
+      return count;
     }
-   answer % 2 ? answer = answer*3 +1 : answer = answer/2
-    	count++
- }
-return -1
-    
+    answer % 2 ? (answer = answer * 3 + 1) : (answer = answer / 2);
+    count++;
+  }
+  return -1;
 }
 
 // 다른 사람 문제 풀이
 
 function collatz(num) {
-    var answer = 0;
-    while(num !=1 && answer !=500){
-        num%2==0 ? num = num/2 : num = num*3 +1;
+  var answer = 0;
+  while (num != 1 && answer != 500) {
+    num % 2 == 0 ? (num = num / 2) : (num = num * 3 + 1);
     answer++;
   }
-    return num == 1 ? answer : -1;
+  return num == 1 ? answer : -1;
 }
 
-// while문을 쓰려고 했으나 조건을 어떻게 넣어야 할지 고민이었다. 
+// while문을 쓰려고 했으나 조건을 어떻게 넣어야 할지 고민이었다.
 // 여기에서는 while 내 조건문도 보기 좋았으나 나중에 return 문도 빠져 나가는것이 보기 좋았다.
 
-//메토님 풀이 reduce를 사용한 방법
+//멘토님 풀이 reduce를 사용한 방법
 
 function collatz(num) {
   let answer = 0;
-  const coountreduce = new Array(500)
-                          .fill(1)
-                          .reduce( (acc,cur) => {
-                          if( acc !==1){
-                            answer ++
-                            return acc % 2 ===0
-                              ? acc / 2
-                              : (acc * 3) + 1
-                          }else{
-                            return 1; // acc
-                          }
-                          })
-  return coountreduce !==1 ? -1 : answer
+  const countreduce = new Array(500).fill(1).reduce((acc, cur) => {
+    if (acc !== 1) {
+      answer++;
+      return acc % 2 === 0 ? acc / 2 : acc * 3 + 1;
+    } else {
+      return 1; // acc
+    }
+  }, num);
+  return countreduce !== 1 ? -1 : answer;
+}
+
+//220609 리팩토링
+function solution(num) {
+  let count = 0;
+  while (count < 500) {
+    if (num === 1) break;
+    console.log(num, count);
+    if (num % 2 === 0) {
+      num = num / 2;
+    } else {
+      num = num * 3 + 1;
+    }
+
+    count++;
+  }
+  return count === 500 ? -1 : count;
 }

@@ -38,38 +38,43 @@ numbers	result
 // - > answer 빈 배열을 만들고, 이중 for 문에서 더해질때마다 배열에 없는 것을 추가하고, 나중에 sort
 // 비슷한거 같으므로 1번으로 진행해보자
 
-
 function solution(numbers) {
-    let answer = []
-      for(let i = 0 ; i < numbers.length-1 ; i ++){
-        for(let j = i+1; j < numbers.length ; j++){
-  
-          if(!answer.includes(numbers[i]+numbers[j])){
-             answer.push(numbers[i]+numbers[j])
-          }
-        }
+  let answer = [];
+  for (let i = 0; i < numbers.length - 1; i++) {
+    for (let j = i + 1; j < numbers.length; j++) {
+      if (!answer.includes(numbers[i] + numbers[j])) {
+        answer.push(numbers[i] + numbers[j]);
       }
-  return answer.sort((a,b) =>(a-b))
+    }
   }
-  
-  let numbers  =[5,0,2,7]
-  
-  solution(numbers)
+  return answer.sort((a, b) => a - b);
+}
+
+let numbers = [5, 0, 2, 7];
+
+solution(numbers);
 
 // 다른사람 풀이인데 원래 계획한 set활용 법
 
 function solution(numbers) {
-  const temp = []
+  const temp = [];
 
   for (let i = 0; i < numbers.length; i++) {
-      for (let j = i + 1; j < numbers.length; j++) {
-          temp.push(numbers[i] + numbers[j])
-      }
+    for (let j = i + 1; j < numbers.length; j++) {
+      temp.push(numbers[i] + numbers[j]);
+    }
   }
 
-  const answer = [...new Set(temp)]
+  const answer = [...new Set(temp)];
 
-  return answer.sort((a, b) => a - b)
+  return answer.sort((a, b) => a - b);
 }
 
-  
+//220609
+function solution(arr) {
+  let min = Math.min(...arr);
+  let idx = arr.indexOf(min);
+  arr.splice(idx, 1);
+
+  return arr.length === 0 ? [-1] : arr;
+}

@@ -19,10 +19,17 @@ n	return
 */
 
 function solution(n) {
-    // 제곱근 수
-    var x = Math.sqrt(n)
-  if (!Number.isInteger(x)) return -1
+  // 제곱근 수
+  var x = Math.sqrt(n);
+  if (!Number.isInteger(x)) return -1;
 
-return (x+1)**2
+  return (x + 1) ** 2;
+}
 
+// 220609 리팩토링
+function solution(n) {
+  for (let i = 1; i ** 2 <= n; i++) {
+    if (i ** 2 === n) return (i + 1) ** 2;
+  }
+  return -1;
 }
