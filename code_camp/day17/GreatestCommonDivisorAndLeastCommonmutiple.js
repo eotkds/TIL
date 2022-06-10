@@ -211,16 +211,61 @@ c % a = b 이런 식으로 재귀함수를 실행하다. 0이 되었을 때, a�
 
 */
 
-let a = 3;
-let b = 12;
+// let a = 3;
+// let b = 12;
 
-function solution(a, b) {
-  let c = 0;
-  for (let i = 0; (c = a % b); a = b, b = c) {
-    console.log(a, b, c);
-  } // c가 0이 되는 경우 멈출 것이다.
+// function solution(a, b) {
+//   let c = 0;
+//   for (let i = 0; (c = a % b); a = b, b = c) {
+//     console.log(a, b, c);
+//   } // c가 0이 되는 경우 멈출 것이다.
 
-  return [b, i];
+//   return [b, i];
+// }
+
+// console.log(solution(a, b));
+
+//220610 리팩토링
+//소인수 분해법 - 배열을 맞추기가 어렵다. 서로 공통 인수중 적은 것으로 들어가야 하는데 따로 배열을 만들면 맞추기 어려움
+//공통 나눗셈 방식
+
+function solution(n, m) {
+  let min = Math.min(n, m);
+  let max = Math.max(n, m);
+  let gcdArr = [1];
+
+  let i = 2;
+  while (i <= min) {
+    if (min % i === 0 && max % i === 0) {
+      gcdArr.push(i);
+      min = min / i;
+      max = max / i;
+    } else {
+      i++;
+    }
+  }
+  let gcd = gcdArr.reduce((acc, cur) => acc * cur);
+  let lcm = gcd * min * max;
+  console.log(gcd, lcm);
+  return [gcd, lcm];
 }
 
-console.log(solution(a, b));
+// solution(1112, 695);
+
+//유클리드 호제법
+function solution(n, m) {
+  let a = n;
+  let b = m;
+  let c = a % b;
+
+  while (c !== 0) {
+    a = b;
+    b = c;
+    c = a % b;
+  }
+  let gcd = b;
+  let lcm = (n * m) / gcd;
+
+  return [gcd, lcm];
+}
+solution(12, 3);
