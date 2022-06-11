@@ -60,3 +60,23 @@ function solution(s, n) {
   let answer = String.fromCharCode(...arr);
   return answer;
 }
+
+//220610 리팩토링
+function solution(s, n) {
+  const alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  let answer = "";
+
+  for (let i = 0; i < s.length; i++) {
+    let idx = alphabet.indexOf(s[i]);
+    if (idx === -1 && s[i] === " ") {
+      answer += " ";
+    }
+    if (idx >= 0 && idx < 26) {
+      answer += alphabet[(idx + n) % 26];
+    }
+    if (idx > 25) {
+      answer += alphabet[((idx + n) % 26) + 26];
+    }
+  }
+  return answer;
+}
