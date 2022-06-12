@@ -82,6 +82,8 @@ function solution(s) {
 
 /*
 RegExp 사용 하여 리팩토링
+허나 해당 코드는 런타임 에러가 난다.
+numbers 가 iterable이 아니기 때문이다. 잘못된 코드이다.
 */
 
 function solution(s) {
@@ -104,4 +106,73 @@ function solution(s) {
   }
 
   return answer;
+}
+//220612 리팩토링
+function solution(s) {
+  const num = {
+    zero: "0",
+    one: "1",
+    two: "2",
+    three: "3",
+    four: "4",
+    five: "5",
+    six: "6",
+    seven: "7",
+    eight: "8",
+    nine: "9",
+  };
+
+  for (key in num) {
+    s = s.replace(key, num[key]);
+  }
+  let answer = s * 1;
+  answer;
+
+  return answer;
+}
+// 위 처럼 하면 "oneone"같은 중복 표현은 "1one"으로 바뀌고 숫자로 변하지 않아 Nan을 return 한다.
+// 위 문제를 참고하여 정규식표현으로 응용 하여 보자
+function solution(s) {
+  let numbers = [
+    "zero",
+    "one",
+    "two",
+    "three",
+    "four",
+    "five",
+    "six",
+    "seven",
+    "eight",
+    "nine",
+  ];
+
+  for (let i = 0; i < numbers.length; i++) {
+    const regExp = new RegExp(numbers[i], "g");
+    s = s.replace(regExp, i);
+  }
+
+  return Number(s);
+}
+//Reference Code중 for ~while문을 이용한 것으로 해보자
+function solution(s) {
+  const numbers = [
+    "zero",
+    "one",
+    "two",
+    "three",
+    "four",
+    "five",
+    "six",
+    "seven",
+    "eight",
+    "nine",
+  ];
+
+  for (let i = 0; i < numbers.length; i++) {
+    while (s.includes(numbers[i])) {
+      s = s.replace(numbers[i], i);
+    }
+  }
+
+  return Number(s);
 }
