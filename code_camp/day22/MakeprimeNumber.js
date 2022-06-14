@@ -68,3 +68,76 @@ console.log(solution(nums));
 
 // 여기서 소수를 구하는 function은 콜백으로 넣는 것이 더 편할 것이다.
 // 다음 시간에는 소수만 구하는 콜백 함수를 만들어보자 제곱근을 활용하는 방식이 있었다.
+
+//220613 리팩토링
+function IsPrime(num) {
+  for (let i = 2; i <= Math.sqrt(num); i++) {
+    if (num % i === 0) return false;
+  }
+  return true;
+}
+
+function solution(nums) {
+  let answer = [];
+  let temp = 0;
+  for (let i = 0; i < nums.length - 2; i++) {
+    for (let j = i + 1; j < nums.length - 1; j++) {
+      for (let k = j + 1; k < nums.length; k++) {
+        temp = nums[i] + nums[j] + nums[k];
+        answer.push(temp);
+      }
+    }
+  }
+  let primeNum = answer.filter((n) => IsPrime(n));
+  return primeNum.length;
+}
+// Reference Code - if 문을 추가하여 리팩토링
+function solution(nums) {
+  let answer = 0;
+
+  let temp = 0;
+  for (let i = 0; i < nums.length - 2; i++) {
+    for (let j = i + 1; j < nums.length - 1; j++) {
+      for (let k = j + 1; k < nums.length; k++) {
+        temp = nums[i] + nums[j] + nums[k];
+        let count = 0;
+        // 소수 판단 // 약수를 구해서
+        for (let l = 1; l <= temp; l++) {
+          if (temp % l === 0) {
+            count++;
+            if (count > 2) break;
+          }
+        }
+        if (count === 2) answer++;
+      }
+    }
+  }
+
+  return answer;
+}
+// Reference Code 홀수 일 경우만 판단하여
+function solution(nums) {
+  let answer = 0;
+
+  let temp = 0;
+  for (let i = 0; i < nums.length - 2; i++) {
+    for (let j = i + 1; j < nums.length - 1; j++) {
+      for (let k = j + 1; k < nums.length; k++) {
+        temp = nums[i] + nums[j] + nums[k];
+        let count = 0;
+
+        if (temp % 2 === 1) {
+          for (let l = 1; l <= temp; l++) {
+            if (temp % l === 0) {
+              count++;
+              if (count > 2) break;
+            }
+          }
+        }
+        if (count === 2) answer++;
+      }
+    }
+  }
+
+  return answer;
+}
