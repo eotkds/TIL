@@ -163,3 +163,87 @@ function solution(N, stages) {
 그다음 sort 할 경우 다른 항목으로 기준으로 하였다.
 
 */
+
+//220615 리팩토링
+function solution(N, stages) {
+  let arr = [];
+  for (let i = 1; i <= N; i++) {
+    let result = stages.filter((el) => el >= i); // 도달한 플레이수
+    let failure = stages.filter((el) => el === i); // 실패한 플레이수
+    // console.log(result)
+    let frate = 0;
+    if (result.length === 0) {
+      frate = 0;
+    } else {
+      frate = failure.length / result.length;
+    }
+    // console.log(result, failure, frate)
+    arr.push([i, frate]);
+  }
+
+  let answer = arr
+    .sort((a, b) => b[1] - a[1])
+    .map((el) => {
+      return el[0];
+    });
+
+  return answer;
+}
+
+//리팩토링 filter가 너무 많이 들어 갔다.
+function solution(N, stages) {
+  let arr = [];
+  for (let i = 1; i <= N; i++) {
+    let result = 0;
+    let failure = 0;
+    stages.forEach((el) => {
+      if (el >= i) result++;
+      if (el === i) failure++;
+    });
+    let frate = 0;
+    if (result === 0) {
+      frate = 0;
+    } else {
+      frate = failure / result;
+    }
+    // console.log(result, failure, frate)
+    arr.push([i, frate]);
+  }
+
+  let answer = arr
+    .sort((a, b) => b[1] - a[1])
+    .map((el) => {
+      return el[0];
+    });
+
+  return answer;
+}
+
+//리팩토링 for문을 안써도 될 거같다.
+function solution(N, stages) {
+  let arr = [];
+  let stage = 1;
+  while (stage <= N) {
+    let result = 0;
+    let failure = 0;
+    stages.forEach((el) => {
+      if (el >= stage) result++;
+      if (el === stage) failure++;
+    });
+    let frate = 0;
+    if (result === 0) {
+      frate = 0;
+    } else {
+      frate = failure / result;
+    }
+    arr.push([stage, frate]);
+    stage++;
+  }
+
+  let answer = arr
+    .sort((a, b) => b[1] - a[1])
+    .map((el) => {
+      return el[0];
+    });
+  return answer;
+}
