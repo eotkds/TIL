@@ -102,3 +102,40 @@ function solution(d, budget) {
 정렬이 되니 작은 수를 빼줘야 하는 것을 pop을 통해 간단히 해결 했다.
 
 */
+//220616 리팩토링
+function solution(d, budget) {
+  let arr = d.sort((a, b) => a - b);
+  let sum = 0;
+  let result = 0;
+  while (sum <= budget) {
+    sum += arr[result];
+    if (sum <= budget) result++;
+  }
+  return result;
+}
+//reference 참고 리팩토링
+function solution(d, budget) {
+  let arr = d.sort((a, b) => a - b);
+  // let sum = 0; sum을 제외 하였다.
+  let result = 0;
+  while (budget - arr[result] >= 0) {
+    budget -= arr[result];
+    result++;
+  }
+  return result;
+}
+
+//reference 참고 리팩토링
+function solution(d, budget) {
+  const answer = d
+    .sort((a, b) => a - b)
+    .filter((money) => {
+      // 총 예산에서 지원금 차감
+      budget -= money;
+
+      if (budget >= 0) {
+        return money;
+      }
+    });
+  return answer.length;
+}
