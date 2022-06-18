@@ -105,3 +105,35 @@ solution(n);
 // }
 
 // solution(n);
+
+//220618 리팩토링
+function solution(n) {
+  let a = 0;
+  let b = 1;
+  let c = 0;
+  let plus = (a, b, n) => {
+    if (n - 2 <= 0) return a + b;
+    c = a + b;
+    a = b;
+    b = c;
+    n--;
+    return plus(a, b, n);
+  };
+
+  return plus(a, b, n);
+}
+
+//재귀함수는 시간초과 - 리팩토링
+
+function solution(n) {
+  let a = 0;
+  let b = 1;
+  let temp = 0;
+  for (let i = 0; i <= n - 2; i++) {
+    temp = (a + b) % 1234567;
+    a = b;
+    b = temp;
+  }
+
+  return temp;
+}
