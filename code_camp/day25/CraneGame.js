@@ -98,3 +98,29 @@ function solution(board, moves) {
 }
 
 console.log(solution(board, moves));
+
+//220619 리팩토링
+
+function solution(board, moves) {
+  let arr = [];
+  let matching = [];
+  for (let k = 0; k < moves.length; k++) {
+    for (let i = 0; i < board.length; i++) {
+      let temp = board[i][moves[k] - 1];
+      // console.log(moves[k], temp, i)
+      if (temp > 0) {
+        arr.push(temp);
+        board[i][moves[k] - 1] = 0;
+        break;
+      }
+      // console.log(board)
+    }
+    if (arr.length >= 2) {
+      if (arr[arr.length - 2] === arr[arr.length - 1]) {
+        matching.push(arr.pop());
+        matching.push(arr.pop());
+      }
+    }
+  }
+  return matching.length;
+}
