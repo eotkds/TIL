@@ -124,3 +124,11 @@ function solution(board, moves) {
   }
   return matching.length;
 }
+
+//Reference 코드 참조
+//다른 사람 풀이중에서 가로 세로를 바꾼 메소드를 있어 참고
+const transpose = (matrix) =>
+  matrix.reduce(
+    (result, row) => row.map((_, i) => [...(result[i] || []), row[i]]),
+    []
+  );
