@@ -65,3 +65,32 @@ function solution(n) {
 }
 
 solution(n);
+
+//220621 리팩토링
+function ternary(x) {
+  let num = x;
+  let answer = [];
+  while (num !== 0) {
+    let divisor = Math.floor(num / 3);
+    let reminder = num % 3;
+
+    if (reminder === 0) {
+      answer.push(reminder);
+    } else {
+      answer.push(reminder);
+    }
+
+    num = divisor;
+  }
+  return answer.reverse();
+}
+
+function solution(n) {
+  let arr = ternary(n);
+  let answer = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] !== 0) answer += arr[i] * 3 ** i;
+  }
+  return answer;
+}

@@ -65,3 +65,44 @@ console.log(bb);
 // }
 
 // whatsThis.apply(obj)
+
+//함수 호출에 따라 다른 결과가 나온다.
+const module = {
+  x: 42,
+  getX: function () {
+    return this.x;
+  },
+};
+
+const unboundGetX1 = module.getX;
+console.log(unboundGetX1()); // undefined
+
+const unboundGetX2 = module.getX();
+console.log(unboundGetX2); // 42
+//return 값까지 불러오냐의 차이라고 생각한다. 런타임이 언제 되는지 고려!
+
+// const module = {
+//   x: 42,
+//   getX: function() {
+//     return this.x;
+//   }
+// };
+
+// const unboundGetX = module.getX;
+// console.log(unboundGetX());
+
+// var x = 'global';
+
+// function foo () {
+//   var x = 'function scope';
+//   console.log(x);
+//   console.log(arguments)
+// }
+
+// foo(); // ?
+// // console.log(x); // ?
+
+// let bb = [].slice.call({'0':1,'1':2})
+// let cc = Array.prototype.slice.call({0:1, 1:2,length:2})
+// cc
+// console.log(Array.prototype)
