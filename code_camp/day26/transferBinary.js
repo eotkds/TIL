@@ -99,3 +99,24 @@ function solution(s) {
 console.log(getridOfZero("110010101001"));
 console.log(getBinary(6));
 console.log(solution("110010101001"));
+
+//Reference 참고 (while + for+ if;continue) + toString()
+function solution(s) {
+  let count = 0;
+  let remove = 0;
+  while (s !== "1") {
+    count++;
+    let temp = "";
+    for (let i = 0; i < s.length; i++) {
+      if (s[i] === "0") {
+        remove++;
+        continue;
+      }
+      temp += s[i];
+    }
+    s = temp.length.toString(2);
+  }
+  return [count, remove];
+}
+
+//Reference 참고 Recursion
