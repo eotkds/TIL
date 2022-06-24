@@ -139,3 +139,5 @@ console.log(solution(dartResult));
  round[0].match(/(^\d{1,})(S|D|T)(\*|#)?/) 다른사람 정규식 표현 중 이게 이해가 안갔다
 
 */
+
+//220624 리팩토링

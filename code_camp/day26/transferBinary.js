@@ -120,3 +120,49 @@ function solution(s) {
 }
 
 //Reference 참고 Recursion
+/*
+1. 0을제거 하면서 제거한 0의 개수 반환하기
+2. 길이를 2진수로 바꾸기(문자열)
+3. 다시 1번 으로
+4. '1' 될 때까지
+*/
+function solution(s) {
+  let count = 0;
+  let remove = 0;
+
+  function recursion(s) {
+    let result = "";
+
+    if (s === "1") return [count, remove];
+    count++;
+    for (let i = 0; i < s.length; i++) {
+      if (s[i] === "0") {
+        remove++;
+        continue;
+      }
+      result += s[i];
+    }
+    s = result.length.toString(2);
+    return recursion(s);
+  }
+
+  return recursion(s);
+}
+
+//reference Recursion
+function solution(s) {
+  let [count, remove] = [0, 0];
+
+  function recursion(s) {
+    if (s === "1") {
+      return [count, remove];
+    }
+
+    remove += s.split("").filter((el) => el === "0").length;
+    s = s.split("").filter((el) => el !== "0").length;
+    count++;
+
+    return recursion(s.toString(2));
+  }
+  return recursion(s);
+}
