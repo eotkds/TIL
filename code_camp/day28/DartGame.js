@@ -141,3 +141,36 @@ console.log(solution(dartResult));
 */
 
 //220624 리팩토링
+function solution(dartResult) {
+  let round = dartResult.match(/\d{1,2}[S|D|T][\*|\#]*/g);
+  let score = [0, 0, 0];
+
+  for (let i = 0; i < round.length; i++) {
+    let temp = round[i].match(/(\d{1,2})([S|D|T])([\*|\#]*)/);
+
+    if (temp[2] === "S") {
+      score[i] += temp[1] ** 1;
+    }
+    if (temp[2] === "D") {
+      score[i] += temp[1] ** 2;
+    }
+    if (temp[2] === "T") {
+      score[i] += temp[1] ** 3;
+    }
+    if (temp[3] === "#") {
+      score[i] *= -1;
+    }
+    if (temp[3] === "*") {
+      if (i === 0) {
+        score[i] *= 2;
+      } else {
+        score[i] *= 2;
+        score[i - 1] *= 2;
+      }
+    }
+  }
+
+  let result = score.reduce((acc, cur) => acc + cur);
+
+  return result;
+}
