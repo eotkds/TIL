@@ -92,3 +92,26 @@ function solution(n, arr1, arr2) {
   }
   return answer;
 }
+
+//220625 리팩토링 메소드 안쓰고!
+function solution(n, arr1, arr2) {
+  let temp = "";
+  let answer = [];
+  for (let i = 0; i < n; i++) {
+    temp = "";
+    let num1 = arr1[i],
+      num2 = arr2[i];
+    for (let j = 0; j < n; j++) {
+      if (num1 % 2 === 0 && num2 % 2 === 0) {
+        temp = " " + temp;
+      } else {
+        temp = "#" + temp;
+      }
+      num1 = Math.floor(num1 / 2);
+      num2 = Math.floor(num2 / 2);
+    }
+
+    answer.push(temp);
+  }
+  return answer;
+}
