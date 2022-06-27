@@ -127,3 +127,35 @@ function solution(new_id) {
   //최종 ID
   return sixlevel;
 }
+
+//220627 리팩토링
+function solution(new_id) {
+  let regExpArr = [".", "[^\\.\\-\\w]*", "\\.{2,}", "^\\.|\\.$"];
+  let str = new_id;
+  let regExp;
+  //level 1~4
+
+  for (let i = 0; i < regExpArr.length; i++) {
+    regExp = new RegExp(regExpArr[i], "g");
+    if (i === 0) str = str.toLowerCase();
+    if (i === 1) str = str.replace(regExp, "");
+    if (i === 2) str = str.replace(regExp, ".");
+    if (i === 3) str = str.replace(regExp, "");
+  }
+
+  //level 5
+  if (str === "") str += "a";
+
+  //level 6
+  if (str.length >= 16) {
+    str = str.slice(0, 15);
+    str = str.replace(regExp, "");
+  }
+
+  //level 7
+  while (str.length <= 2) {
+    str += str[str.length - 1];
+  }
+
+  return str;
+}
