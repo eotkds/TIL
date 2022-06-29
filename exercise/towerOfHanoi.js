@@ -76,7 +76,7 @@ for(let i =0; i < n; i++){
 
 
 */
-
+/*
 function solution(n) {
   let answer = [[]];
   let tower = [[], [], []];
@@ -84,5 +84,62 @@ function solution(n) {
     tower[0].push(i);
   }
 
+  return answer;
+}
+*/
+
+/*
+유투브 보고 만들기
+let tower = [[], [], []];
+let tower = [[],[],[]]
+    for(let i = 0; i<n; i++){
+        tower[0].push(i)
+    }
+function aaa(n, a, b, c){
+  if(n === 1){
+    tower[c].unshift(tower[a].shift())
+    return
+  }
+  aaa(n-1, a, c, b)
+  tower[c].unshift(tower[a].shift())
+  aaa(n-1,b, a, c)
+}
+
+
+배열로 붙였을 경우인데 타입스크립트가 없어서 타입지정이 되지 않는다.
+function bbb(n, a:array , b: array, c:array){
+  if(n === 1){
+    c.unshift(a.shift())
+    return
+  }
+  bbb(n-1, a, c, b)
+  c.unshift(a.shift())
+  bbb(n-1,b,a,c)
+  
+}
+
+*/
+
+function solution(n) {
+  let answer = [];
+  let tower = [[], [], []];
+
+  for (let i = 0; i < n; i++) {
+    tower[0].push(i);
+  }
+
+  function aaa(n, a, b, c) {
+    if (n === 1) {
+      tower[c].unshift(tower[a].shift());
+      answer.push([a + 1, c + 1]);
+      return;
+    }
+    aaa(n - 1, a, c, b);
+    tower[c].unshift(tower[a].shift());
+    answer.push([a + 1, c + 1]);
+    aaa(n - 1, b, a, c);
+  }
+
+  aaa(n, 0, 1, 2);
   return answer;
 }
