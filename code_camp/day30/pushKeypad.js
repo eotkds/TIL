@@ -140,3 +140,65 @@ function solution(numbers, hand) {
 
   return answer;
 }
+
+//220630 리팩토링
+function solution(numbers, hand) {
+  const direction = {
+    1: ["L"],
+    4: ["L"],
+    7: ["L"],
+    3: ["R"],
+    6: ["R"],
+    9: ["R"],
+    2: ["M"],
+    5: ["M"],
+    8: ["M"],
+    0: ["M"],
+  };
+  let result = "";
+  for (let i = 0; i < 9; i++) {
+    direction[i + 1].push([i % 3, Math.floor(i / 3)]);
+  }
+  //  [3,0]-> '*' / -> '#'
+  direction[0].push([1, 3]);
+
+  let left = [0, 3];
+  let right = [2, 3];
+
+  for (let i = 0; i < numbers.length; i++) {
+    let num = numbers[i];
+    if (direction[num][0] === "L") {
+      result += "L";
+      left = direction[num][1];
+    }
+    if (direction[num][0] === "R") {
+      result += "R";
+      right = direction[num][1];
+    }
+    if (direction[num][0] === "M") {
+      let M = direction[num][1];
+      let LM = Math.abs(left[0] - M[0]) + Math.abs(left[1] - M[1]);
+      let RM = Math.abs(right[0] - M[0]) + Math.abs(right[1] - M[1]);
+      // console.log(M, LM, RM);
+      if (LM === RM) {
+        if (hand === "right") {
+          result += "R";
+          right = direction[num][1];
+        } else {
+          result += "L";
+          left = direction[num][1];
+        }
+      }
+      if (RM < LM) {
+        result += "R";
+        right = direction[num][1];
+      }
+      if (LM < RM) {
+        result += "L";
+        left = direction[num][1];
+      }
+    }
+    // console.log(numbers[i], direction[num], result, left, right);
+  }
+  return result;
+}
