@@ -130,7 +130,6 @@ function solution(id_list, report, k) {
     return count;
   });
 
-  console.log(obj, reported, answer);
   return answer;
 }
 solution(id_list, report, k);
@@ -138,3 +137,45 @@ solution(id_list, report, k);
 // 그러니 중간에 합산한 것은 맞지 않는다.
 
 //map set을 이용하여 다시 풀어보장
+//220702 리팩토링
+
+function solution(id_list, report, k) {
+  let list = report.reduce((acc, cur) => {
+    let id = cur.split(" ")[0];
+    let reported = cur.split(" ")[1];
+
+    if (id in acc) {
+      if (reported in acc[id]) {
+      } else {
+        acc[id][reported] = 1;
+      }
+    } else {
+      acc[id] = {};
+      acc[id][reported] = 1;
+    }
+    return acc;
+  }, {});
+  let reported = {};
+
+  for (let i = 0; i < id_list.length; i++) {
+    let id = id_list[i];
+    for (key in list[id]) {
+      if (key in reported) {
+        reported[key]++;
+      } else {
+        reported[key] = 1;
+      }
+    }
+  }
+
+  let answer = id_list.map((el) => {
+    let count = 0;
+    for (key in list[el]) {
+      if (reported[key] >= k) {
+        count++;
+      }
+    }
+    return count;
+  });
+  return answer;
+}
