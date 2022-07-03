@@ -179,3 +179,46 @@ function solution(id_list, report, k) {
   });
   return answer;
 }
+
+//리팩토링
+function solution(id_list, report, k) {
+  let list = report.reduce((acc, cur) => {
+    let id = cur.split(" ")[0];
+    let reported = cur.split(" ")[1];
+
+    if (id in acc) {
+      if (!acc[id].includes(reported)) {
+        acc[id].push(reported);
+      }
+    } else {
+      acc[id] = [];
+      acc[id].push(reported);
+    }
+    return acc;
+  }, {});
+
+  //신고 수 확인
+  let reported = {};
+  for (key in list) {
+    let arr = list[key];
+    for (let i = 0; i < arr.length; i++) {
+      if (reported[arr[i]]) {
+        reported[arr[i]]++;
+      } else {
+        reported[arr[i]] = 1;
+      }
+    }
+  }
+  let answer = id_list.map((el) => {
+    let count = 0;
+    let arr = list[el];
+    if (arr) {
+      for (let i = 0; i < arr.length; i++) {
+        if (reported[arr[i]] >= k) count++;
+      }
+    }
+
+    return count;
+  });
+  return answer;
+}
