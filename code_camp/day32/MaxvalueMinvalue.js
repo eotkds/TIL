@@ -27,3 +27,5 @@ function solution(s) {
   answer = answer + Math.min(...arr) + " " + Math.max(...arr);
   return answer;
 }
+
+//220705 리팩토링

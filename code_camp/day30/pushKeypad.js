@@ -202,3 +202,5 @@ function solution(numbers, hand) {
   }
   return result;
 }
+
+//리팩토링
