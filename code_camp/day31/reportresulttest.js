@@ -222,3 +222,10 @@ function solution(id_list, report, k) {
   });
   return answer;
 }
+
+//map set 사용하여 재풀이
+function solution(id_list, report, k) {
+  /*
+  
+  */
+}

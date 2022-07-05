@@ -110,3 +110,14 @@ function solution(s) {
   }
   return num === 0 ? true : false;
 }
+//reference - reduce 사용
+function solution(s) {
+  if (s[0] === ")" || s[s.length - 1] === "(") return false;
+  let fail = false; // 중간에 ')' 가 많을 경우 ex) ())(()()
+  let answer = s.split("").reduce((acc, cur) => {
+    if (acc < 0) fail = true;
+    return acc + (cur === "(" ? 1 : -1);
+  }, 0);
+
+  return answer === 0 && fail === false;
+}

@@ -29,3 +29,12 @@ function solution(s) {
 }
 
 //220705 리팩토링
+function solution(s) {
+  let answer = "";
+  let arr = s.split(" ").map((x) => x * 1);
+  let max = Math.max(...arr);
+  let min = Math.min(...arr);
+  answer = answer + min + " " + max;
+
+  return answer;
+}
