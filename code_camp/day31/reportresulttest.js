@@ -159,7 +159,7 @@ function solution(id_list, report, k) {
 
   for (let i = 0; i < id_list.length; i++) {
     let id = id_list[i];
-    for (key in list[id]) {
+    for (let key in list[id]) {
       if (key in reported) {
         reported[key]++;
       } else {
@@ -170,7 +170,7 @@ function solution(id_list, report, k) {
 
   let answer = id_list.map((el) => {
     let count = 0;
-    for (key in list[el]) {
+    for (let key in list[el]) {
       if (reported[key] >= k) {
         count++;
       }
@@ -182,6 +182,7 @@ function solution(id_list, report, k) {
 
 //리팩토링
 function solution(id_list, report, k) {
+  //아이디별 신고 리스트 만들기
   let list = report.reduce((acc, cur) => {
     let id = cur.split(" ")[0];
     let reported = cur.split(" ")[1];
@@ -199,7 +200,7 @@ function solution(id_list, report, k) {
 
   //신고 수 확인
   let reported = {};
-  for (key in list) {
+  for (let key in list) {
     let arr = list[key];
     for (let i = 0; i < arr.length; i++) {
       if (reported[arr[i]]) {
@@ -223,9 +224,47 @@ function solution(id_list, report, k) {
   return answer;
 }
 
-//map set 사용하여 재풀이
+//reference 참고하여 재풀이
 function solution(id_list, report, k) {
   /*
-  
+  map까지는 사용할 필요는 없을거 같다.
+  set만 레퍼런스 참고 하여 리팩토링
   */
+  report = Array.from(new Set(report)); // Array.from 사용하여 중복제거!
+  /*
+  let abc = new Set(report)
+  report = [...abc] 와 동일
+  */
+
+  /*
+  신고자 별 신고 당한 유저 리스트와
+  신고자 별 신고 당한 수를 통합하여 객체 만들기
+  */
+  const reporter = {}; // 신고한 id 리스트
+  const list = {}; // 신공 당한 건 수
+  for (let i = 0; i < report.length; i++) {
+    let info = report[i].split(" ");
+
+    if (reporter[info[0]] === undefined) {
+      reporter[info[0]] = [];
+    }
+    if (list[info[1]] === undefined) {
+      list[info[1]] = 0;
+    }
+
+    reporter[info[0]].push(info[1]);
+    list[info[1]]++;
+  }
+
+  //결과 배열 만들기
+  let result = id_list.map((el) => {
+    let count = 0;
+    let arr = reporter[el] || []; // reporter[el]가 falsy한 값일 경우
+    for (let i = 0; i < arr.length; i++) {
+      if (list[arr[i]] >= k) count++;
+    }
+    return count;
+  });
+
+  return result;
 }
