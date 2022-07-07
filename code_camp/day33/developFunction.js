@@ -92,3 +92,65 @@ function solution(progresses, speeds) {
 }
 
 console.log(solution(progresses, speeds));
+
+//2207007 리팩토링
+function solution(progresses, speeds) {
+  let answer = [];
+
+  //작업완료일 배열만들기
+  let result = progresses.map((el, i) => {
+    let count = 0;
+    while (el < 100) {
+      el += speeds[i];
+      count++;
+    }
+    return count;
+  });
+
+  //결과 배열 만들기
+  let count = 1;
+  let temp = result[0];
+  for (let i = 1; i < result.length; i++) {
+    if (temp >= result[i]) {
+      count++;
+    } else {
+      answer.push(count);
+      count = 1;
+      temp = result[i];
+    }
+  }
+  answer.push(count);
+  return answer;
+}
+
+//리팩토링
+function solution(progresses, speeds) {
+  //작업완료일 배열만들기
+  let result = progresses.map((el, i) => {
+    let count = 0;
+    while (el < 100) {
+      el += speeds[i];
+      count++;
+    }
+    console.log(count);
+    return count;
+  });
+
+  //결과 배열 만들기
+  let answer = [];
+  let count = 1;
+  let temp = result[0];
+  let i = 1;
+  while (i < result.length) {
+    if (temp >= result[i]) {
+      count++;
+      i++;
+    } else {
+      answer.push(count);
+      count = 1;
+      temp = result[i];
+    }
+  }
+}
+
+//reference 참고하고 리팩토링

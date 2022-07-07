@@ -29,3 +29,9 @@ num.toString(2)
 
 
 */
+const Dog = {
+  name: "ddoddo",
+};
+Object.prototype.sayHello = () => console.log(`Hello ${this.name}`);
+
+Dog.sayHello();
