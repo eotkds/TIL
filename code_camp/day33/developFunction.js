@@ -154,3 +154,42 @@ function solution(progresses, speeds) {
 }
 
 //reference 참고하고 리팩토링
+function solution(progresses, speeds) {
+  // 작업 완료 일 배열
+  let days = progresses.map((el, i) => {
+    let day = Math.ceil((100 - el) / speeds[i]);
+    return day;
+  });
+
+  // 결과값 만들기
+  let answer = [0];
+  let temp = days[0];
+  for (let i = 0, j = 0; i < days.length; i++) {
+    if (temp >= days[i]) {
+      answer[j]++;
+    } else {
+      temp = days[i];
+      answer[++j] = 1;
+    }
+  }
+  return answer;
+}
+
+//for과 length를 활용하여 리팩토링
+function solution(progresses, speeds) {
+  let answer = [];
+  let day = 0;
+
+  for (let i = 0; i < progresses.length; i++) {
+    let days = Math.ceil((100 - progresses[i]) / speeds[i]);
+
+    if (day >= days) {
+      answer[answer.length - 1]++;
+    } else if (day < days) {
+      day = days;
+      answer[answer.length] = 1;
+    }
+  }
+}
+
+//Reference : reduce 활용
