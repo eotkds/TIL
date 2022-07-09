@@ -80,3 +80,28 @@ function solution(skill, skill_trees) {
 console.log(solution(skill, skill_trees));
 //2, 3, 4, 12 통과
 // 테스트 케이스 중 스킬트리에 스킬이 없는 케이스를생각하지 못했다.
+
+//220709 리팩토링
+function solution(skill, skill_trees) {
+  let answer = 0;
+  let Rskill = true;
+  for (let i = 0, j = 0; i < skill_trees.length; i++) {
+    let s_tree = skill_trees[i];
+    for (let k = 0; k < s_tree.length; k++) {
+      if (skill.includes(s_tree[k])) {
+        if (s_tree[k] === skill[j]) {
+          j++;
+        } else {
+          Rskill = false;
+          break;
+        }
+      }
+    }
+    if (Rskill) answer++;
+    j = 0;
+    Rskill = true;
+  }
+  return answer;
+}
+
+//리팩토링
