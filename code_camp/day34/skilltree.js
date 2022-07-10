@@ -66,7 +66,7 @@ function solution(skill, skill_trees) {
     let idx = 0;
     for (key of cur) {
       //   if (skill.indexOf(key) === -1) break;
-      console.log(skill.indexOf(key), key, idx);
+
       if (skill.indexOf(key) > idx) return acc;
       if (key === skill[idx]) idx++;
     }
