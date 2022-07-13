@@ -115,3 +115,48 @@ function solution(n, words) {
   }
   return answer;
 }
+
+//220711 리팩토링
+
+function solution(n, words) {
+  function result(i, n) {
+    let personNum = 0,
+      result = 0;
+    personNum = (i % n) + 1;
+    result = Math.floor(i / n) + 1;
+    return [personNum, result];
+  }
+
+  let arr = [words[0]];
+
+  for (let i = 1; i < words.length; i++) {
+    let preWord = words[i - 1];
+    let word = words[i];
+
+    if (preWord[preWord.length - 1] !== word[0]) {
+      return result(i, n);
+    }
+
+    if (arr.includes(word)) {
+      return result(i, n);
+    }
+    arr.push(word);
+  }
+  return [0, 0];
+}
+
+//리팩토링
+function solution(n, words) {
+  let answer = [0, 0];
+  for (let i = 1; i < words.length; i++) {
+    let lastWord = words[i - 1][words[i - 1].length - 1];
+    let firstWord = words[i][0];
+
+    if (lastWord !== firstWord || words.indexOf(words[i]) !== i) {
+      answer[0] = (i % n) + 1;
+      answer[1] = Math.floor(i / n) + 1;
+      return answer; // 가장먼저 탈락하는 번호를 return 해주어야 했다.
+    }
+  }
+  return answer;
+}

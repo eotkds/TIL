@@ -77,7 +77,6 @@ function solution(skill, skill_trees) {
   return count;
 }
 
-console.log(solution(skill, skill_trees));
 //2, 3, 4, 12 통과
 // 테스트 케이스 중 스킬트리에 스킬이 없는 케이스를생각하지 못했다.
 
@@ -104,4 +103,17 @@ function solution(skill, skill_trees) {
   return answer;
 }
 
-//리팩토링
+//리팩토링 reference - replace / filter 메소드 사용'
+function solution(skill, skill_trees) {
+  let regExp = new RegExp(`[^${skill}]`, "g");
+
+  let skill_tree = skill_trees.map((el) => {
+    return el.replace(regExp, "");
+  });
+
+  let result = skill_tree.filter((el) => {
+    return skill.indexOf(el) === 0 || el === ""; //skill이 없는 것 또한 포함 시켜야 한다.
+  });
+
+  return result.length;
+}
