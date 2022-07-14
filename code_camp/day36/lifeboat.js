@@ -98,4 +98,18 @@ function solution(people, limit) {
 
 let people = [160, 150, 140, 60, 50, 40];
 
-solution(people, 200);
+//220714 refactoring
+function solution(people, limit) {
+  let lastNum = people.length - 1;
+  let arr = people.sort((a, b) => b - a);
+  console.log(arr, lastNum);
+  let count = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (i > lastNum) return count;
+    if (arr[i] + arr[lastNum] <= limit) {
+      lastNum--;
+    }
+    count++;
+  }
+  return count;
+}
