@@ -107,3 +107,31 @@ function solution(record) {
 
   return answer;
 }
+
+//220717 refactoring
+function solution(record) {
+  const id_info = {};
+  let answer = [];
+  //아이디, 닉네임 정리
+  for (let i = 0; i < record.length; i++) {
+    let [action, id, nickname] = record[i].split(" ");
+    if (action === "Enter" || action === "Change") {
+      id_info[id] = nickname;
+    }
+  }
+
+  for (let i = 0; i < record.length; i++) {
+    let [action, id, nickname] = record[i].split(" ");
+    let str = `${id_info[id]}님이`;
+
+    if (action === "Enter") {
+      str += ` 들어왔습니다.`;
+      answer.push(str);
+    }
+    if (action === "Leave") {
+      str += ` 나갔습니다.`;
+      answer.push(str);
+    }
+  }
+  return answer;
+}

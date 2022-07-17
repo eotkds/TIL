@@ -123,6 +123,5 @@ function solution(people, limit) {
       i++;
     }
   }
-
   return i;
 }
