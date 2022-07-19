@@ -135,3 +135,28 @@ function solution(record) {
   }
   return answer;
 }
+
+function solution(record) {
+  const id_info = {};
+  const sentences = {
+    Enter: " 들어왔습니다.",
+    Leave: " 나갔습니다.",
+  };
+  let answer = [];
+  //아이디, 닉네임 정리
+  for (let i = 0; i < record.length; i++) {
+    let [action, id, nickname] = record[i].split(" ");
+    if (action === "Enter" || action === "Change") {
+      id_info[id] = nickname;
+    }
+  }
+
+  record.forEach((el) => {
+    let [action, id] = el.split(" ");
+    if (action === "Enter" || action === "Leave") {
+      answer.push(`${id_info[id]}님이${sentences[action]}`);
+    }
+  });
+
+  return answer;
+}

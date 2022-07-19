@@ -94,4 +94,25 @@ function solution(priorities, location) {
 let priorities = [2, 1, 3, 2];
 let location = 2;
 
-solution(priorities, location);
+//220719 Refactoring
+function solution(priorities, location) {
+  let arr = priorities.map((v, i) => [v, i]);
+  let answer = [];
+  let max = Math.max(...priorities);
+  while (arr.length > 0) {
+    let num = arr[0][0];
+
+    if (num === max) {
+      answer[answer.length] = arr[0];
+      arr.splice(0, 1);
+      priorities.splice(priorities.indexOf(max), 1);
+      max = Math.max(...priorities);
+    } else {
+      arr[arr.length] = arr[0];
+      arr.splice(0, 1);
+    }
+  }
+  for (let i = 0; i < answer.length; i++) {
+    if (answer[i][1] === location) return i + 1;
+  }
+}
