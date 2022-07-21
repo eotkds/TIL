@@ -113,3 +113,51 @@ function solution(s) {
 let s = "([)]{}";
 
 solution(s);
+
+//220721 refactoring
+function solution(s) {
+  //각각 괄호마다 점수 산정 내부 함수를 만들 예정
+  function report(s) {
+    const score = {
+      ")": false,
+      "}": false,
+      "]": false,
+      "(": true,
+      "{": true,
+      "[": true,
+    };
+
+    let small = 0,
+      medium = 0,
+      large = 0;
+    if (!score[s[0]] || !score[s[s.length - 1]]) return 0;
+    for (let i = 0; i < s.length; i++) {
+      if (s[i] === "(" || s[i] === ")") {
+        if (score[s[i]]) {
+          small++;
+        } else {
+          small--;
+        }
+      }
+      if (s[i] === "{" || s[i] === "}") {
+        if (score[s[i]]) {
+          medium++;
+        } else {
+          medium--;
+        }
+      }
+      if (s[i] === "[" || s[i] === "]") {
+        if (score[s[i]]) {
+          large++;
+        } else {
+          large--;
+        }
+      }
+      if (small < 0 || medium < 0 || large < 0) return 0;
+    }
+
+    return small === 0 && medium === 0 && large === 0 ? 1 : 0;
+  }
+
+  return report(s);
+}
