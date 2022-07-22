@@ -97,22 +97,52 @@ let location = 2;
 //220719 Refactoring
 function solution(priorities, location) {
   let arr = priorities.map((v, i) => [v, i]);
-  let answer = [];
+  let answer = []; //프린터 순서 배열
   let max = Math.max(...priorities);
+
   while (arr.length > 0) {
     let num = arr[0][0];
-
+    //max이면 첫번째 순서이기 때문에 answer추가
     if (num === max) {
       answer[answer.length] = arr[0];
+      //추가하고 0번째는 지워준다.
       arr.splice(0, 1);
+      //priorities 배열에 있는 숫자도 지워주고, max값을 갱신
       priorities.splice(priorities.indexOf(max), 1);
       max = Math.max(...priorities);
     } else {
+      //맨 뒤로 보내주고 지워준다.
       arr[arr.length] = arr[0];
       arr.splice(0, 1);
     }
   }
+
+  //순서 찾아서 반환
   for (let i = 0; i < answer.length; i++) {
     if (answer[i][1] === location) return i + 1;
   }
 }
+
+//reference refactoring1 - 런타임 에러 발생
+function solution(priorities, location) {
+  //바꿀 때마다 배열을 평가
+  let arr = priorities.map((v, i) => [v, i]);
+
+  function recursion(arr, location) {
+    let idx;
+    for (let i = 0; i < arr.length - 1; i++) {
+      if (arr[i][1] === location) idx = i + 1;
+      if (arr[i][0] < arr[i + 1][0]) {
+        arr[arr.length] = arr[0];
+        arr.shift();
+        return recursion(arr, location);
+      }
+    }
+
+    return idx;
+  }
+
+  return recursion(arr, location);
+}
+
+//reference refactoring2

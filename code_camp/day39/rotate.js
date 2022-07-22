@@ -130,7 +130,7 @@ function solution(s) {
     let small = 0,
       medium = 0,
       large = 0;
-    if (!score[s[0]] || !score[s[s.length - 1]]) return 0;
+    if (!score[s[0]] || score[s[s.length - 1]]) return 0;
     for (let i = 0; i < s.length; i++) {
       if (s[i] === "(" || s[i] === ")") {
         if (score[s[i]]) {
@@ -158,6 +158,14 @@ function solution(s) {
 
     return small === 0 && medium === 0 && large === 0 ? 1 : 0;
   }
+  let answer = 0;
+  for (let k = 0; k < s.length; k++) {
+    let front = s.substring(0, k);
+    let back = s.substring(k);
+    let words = back + front;
 
-  return report(s);
+    answer += report(words);
+  }
+
+  return answer;
 }
