@@ -145,4 +145,51 @@ function solution(priorities, location) {
   return recursion(arr, location);
 }
 
-//reference refactoring2
+//reference refactoring2 : 런타임 에러
+function solution(priorities, location) {
+  let arr = priorities.map((v, i) => [v, i]);
+
+  function recursion(arr) {
+    for (let i = 0; i < arr.length - 1; i++) {
+      if (arr[i][0] < arr[i + 1][0]) {
+        arr[arr.length] = arr[0];
+        arr.shift();
+        return recursion(arr);
+      }
+    }
+
+    return arr;
+  }
+  let sorted_arr = recursion(arr);
+
+  for (let i = 0; i < sorted_arr.length; i++) {
+    if (sorted_arr[i][1] === location) return i + 1;
+  }
+}
+
+//reference refactoring3
+function solution1(priorities, location) {
+  let arr = priorities.map((v, i) => [v, i]);
+
+  //그렇다면 직접 정렬을 해보자
+  let stop = true;
+
+  while (stop) {
+    for (let i = 0; i < arr.length - 1; i++) {
+      if (arr[i][0] < arr[i + 1][0]) {
+        arr[arr.length] = arr[0];
+        arr.shift();
+        break;
+      }
+
+      if (i === arr.length - 2) {
+        stop = false;
+      }
+    }
+  }
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i][1] === location) return i + 1;
+  }
+}
+solution1(priorities, location);
