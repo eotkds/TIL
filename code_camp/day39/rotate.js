@@ -102,8 +102,6 @@ function solution(s) {
   let arr = [...s];
   let count = 0;
   for (let i = 0; i < s.length; i++) {
-    console.log(i, count, arr);
-    console.log(isRight(arr));
     if (isRight(arr)) count++;
     rotate(arr);
   }
@@ -112,9 +110,7 @@ function solution(s) {
 }
 let s = "([)]{}";
 
-solution(s);
-
-//220721 refactoring
+//220721 refactoring : 테스트 14번 실패
 function solution(s) {
   //각각 괄호마다 점수 산정 내부 함수를 만들 예정
   function report(s) {
@@ -165,6 +161,50 @@ function solution(s) {
     let words = back + front;
 
     answer += report(words);
+  }
+
+  return answer;
+}
+
+//질문하기게시판을 보니 "([{)}]" 테스트케이스를 통과하지 못 했다.
+//마지막 open형 괄호와 닫힘형 괄호가 만나야 했다.
+//220725 refactoring
+function solution(s) {
+  //각각 괄호마다 점수 산정 내부 함수를 만들 예정
+  function report(s) {
+    const pair = {
+      "(": ")",
+      "{": "}",
+      "[": "]",
+    };
+    const open = ["(", "{", "["];
+    const close = [")", "}", "]"];
+    let stack = [];
+
+    if (close.includes(s[0]) || open.includes(s[s.length - 1])) return false;
+    for (let i = 0; i < s.length; i++) {
+      if (open.includes(s[i])) {
+        stack[stack.length] = s[i];
+      }
+      if (close.includes(s[i])) {
+        let last = stack[stack.length - 1];
+        if (pair[last] === s[i]) {
+          stack.pop();
+        } else {
+          return false;
+        }
+      }
+    }
+    return stack.length === 0;
+  }
+
+  let answer = 0;
+  for (let k = 0; k < s.length; k++) {
+    let front = s.substring(0, k);
+    let back = s.substring(k);
+    let words = back + front;
+
+    if (report(words)) answer++;
   }
 
   return answer;

@@ -167,14 +167,15 @@ function solution(priorities, location) {
   }
 }
 
-//reference refactoring3
-function solution1(priorities, location) {
+//reference refactoring3 : 실패 시간 초과
+//매번 array 정렬을 해야만 하니깐 오래 걸린것 같다. 중간에 location을 찾아주면 좀 낫지 않을까?
+function solution(priorities, location) {
   let arr = priorities.map((v, i) => [v, i]);
 
   //그렇다면 직접 정렬을 해보자
-  let stop = true;
+  let start = true;
 
-  while (stop) {
+  while (start) {
     for (let i = 0; i < arr.length - 1; i++) {
       if (arr[i][0] < arr[i + 1][0]) {
         arr[arr.length] = arr[0];
@@ -183,7 +184,7 @@ function solution1(priorities, location) {
       }
 
       if (i === arr.length - 2) {
-        stop = false;
+        start = false;
       }
     }
   }
@@ -192,4 +193,29 @@ function solution1(priorities, location) {
     if (arr[i][1] === location) return i + 1;
   }
 }
-solution1(priorities, location);
+
+///reference refactoring4
+//모든 순회가 끝나야만 평가가 가능함
+function solution(priorities, location) {
+  let arr = priorities.map((v, i) => [v, i]);
+
+  //그렇다면 직접 정렬을 해보자
+  let start = true;
+
+  while (start) {
+    for (let i = 0; i < arr.length - 1; i++) {
+      if (arr[i][0] < arr[i + 1][0]) {
+        arr[arr.length] = arr[0];
+        arr.shift();
+        break;
+      }
+
+      if (i === arr.length - 2) {
+        start = false;
+      }
+    }
+  }
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i][1] === location) return i + 1;
+  }
+}

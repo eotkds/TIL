@@ -24,10 +24,6 @@ s	answer
 문제의 예시와 같습니다.
 
 */
-/*
-
-
-*/
 
 function solution(s) {
   const regexp = RegExp(/\(\)/, "g");
