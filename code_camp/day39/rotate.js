@@ -209,3 +209,50 @@ function solution(s) {
 
   return answer;
 }
+
+//220728 Reference code
+function solution(s) {
+  //짝수와 홀수로 괄호를 구분 짓는 것이 좋았다.
+  const numbering = {
+    "[": 0,
+    "]": 1,
+    "{": 2,
+    "}": 3,
+    "(": 4,
+    ")": 5,
+  };
+  let answer = 0;
+  for (let i = 0; i < s.length; i++) {
+    //substring을 사용하여 string을 돌리는 효과도 좋았다.
+    s = s.substring(1) + s[0];
+    let stack = [];
+
+    for (let l = 0; l < s.length; l++) {
+      //짝수일 경우 열림 괄호
+      if (numbering[s[l]] % 2 === 0) {
+        stack.push(numbering[s[l]]); // 숫자로 stack을 쌓는다.
+      }
+      //홀수일경우 닫힘괄호
+      if (numbering[s[l]] % 2 === 1) {
+        let last = stack[stack.length - 1];
+        //열림괄호와 같은 유형인지
+        if (last === numbering[s[l]] - 1) {
+          //맞으면 stack을 없애준다.
+          stack.pop();
+        } else {
+          //열림괄호와 짝이 안맞다면 순회를 멈춘다.
+          break;
+        }
+      }
+
+      if (l === s.length - 1) {
+        if (stack.length === 0) {
+          //순회가 끝나고, stack에 남아 있는 것이 없을 경우
+          answer++;
+        }
+      }
+    }
+  }
+
+  return answer;
+}

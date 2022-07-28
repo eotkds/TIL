@@ -195,27 +195,26 @@ function solution(priorities, location) {
 }
 
 ///reference refactoring4
-//모든 순회가 끝나야만 평가가 가능함
+//모든 순회가 끝나야만 평가가 가능함 - sort()를 사용하여 미리 정렬된 배열을 쓰려고 했으나
+//sort()는 mutator method 이기 때문에 불가능
+/*
+우선 순번이 location까지 문제가 없어야 하는데 그러기 위해서는 max값이 필요함
+Reference에서는 location값을 따로 저장하고, 0으로 바꾸고 다시 원래값을 바꾸는 번거로움이 있다고 생각함.
+
+다른사람 풀이를 참고하여 ...
+*/
 function solution(priorities, location) {
   let arr = priorities.map((v, i) => [v, i]);
+  let count = 0;
 
-  //그렇다면 직접 정렬을 해보자
-  let start = true;
-
-  while (start) {
-    for (let i = 0; i < arr.length - 1; i++) {
-      if (arr[i][0] < arr[i + 1][0]) {
-        arr[arr.length] = arr[0];
-        arr.shift();
-        break;
-      }
-
-      if (i === arr.length - 2) {
-        start = false;
-      }
+  while (true) {
+    let firstIdx = arr.shift();
+    if (arr.some((el) => el[0] > firstIdx[0])) {
+      arr.push(firstIdx);
+    } else {
+      //첫 번째요소가 가장 큰 번호라면 그리고 location이 아니면 count올리고 빠진채로 나머지를 순번을 다시본다.
+      count++;
+      if (firstIdx[1] === location) return count;
     }
-  }
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i][1] === location) return i + 1;
   }
 }
