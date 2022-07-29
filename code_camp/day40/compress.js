@@ -90,6 +90,7 @@ while 문으로 시작 해보자
 
 
 */
+/* 
 let alpha = "ABCDEFGHJIKLMNOPQRSTUVWXYZ";
 const dictionary = alpha.split("");
 let answer = [];
@@ -108,10 +109,35 @@ for (let i = 0; i < msg.length; i++) {
     dictionary.push(temp + msg[i + 1]);
     answer.push(dictionary.indexOf(temp) + 1);
   }
-  console.log(w, c, w + c);
+
 
   // c += msg[i+1]
   //c는 w 에 다음 인덱스 까지
 }
-
+*/
 // dictionary
+//220729 리팩토링
+//기본 객체를 만들기 : 추가할 경우 숫자를 입력할 수가 없다. ; 배열로 가야한다.
+
+function solution(msg) {
+  let s = "abcdefghijklmnopqrstuvwxyz";
+  let dictionary = s.toUpperCase().split("");
+  let answer = [];
+  let w = "",
+    c = "";
+
+  for (let i = 0; i < msg.length; i++) {
+    //현재 글자 찾기
+    w += msg[i];
+    c = msg[i + 1] === undefined ? "" : msg[i + 1];
+    if (!dictionary.includes(w + c)) {
+      dictionary[dictionary.length] = w + c;
+      answer.push(dictionary.indexOf(w) + 1);
+      w = "";
+    }
+    if (i === msg.length - 1 && w !== "") {
+      answer.push(dictionary.indexOf(w) + 1);
+    }
+  }
+  return answer;
+}
