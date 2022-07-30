@@ -141,3 +141,27 @@ function solution(msg) {
   }
   return answer;
 }
+
+//220730 Refactoring
+function solution(msg) {
+  let s = "abcdefghijklmnopqrstuvwxyz";
+  let dictionary = s.toUpperCase().split("");
+  let answer = [];
+  let w = "",
+    c = "";
+
+  for (let i = 0; i < msg.length; i++) {
+    //현재 글자 찾기
+    w += msg[i];
+    c = msg[i + 1] === undefined ? "" : msg[i + 1];
+    if (!dictionary.includes(w + c)) {
+      dictionary[dictionary.length] = w + c;
+      answer.push(dictionary.indexOf(w) + 1);
+      w = "";
+    }
+    if (i === msg.length - 1 && w !== "") {
+      answer.push(dictionary.indexOf(w) + 1);
+    }
+  }
+  return answer;
+}
