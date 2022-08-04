@@ -30,7 +30,7 @@ function solution(left, right) {
 
   return answer;
 }
-//Refactoring2  : 속도가 너 느려짐
+//Refactoring2  : 속도가 더 느려짐
 function solution(left, right) {
   let answer = 0;
   let arr = Array.from({ length: right - left + 1 }, (v, i) => i + left);
@@ -51,4 +51,18 @@ function solution(left, right) {
 
   return answer;
 }
-//reference refactoring
+//reference refactoring : 제곱근의 수가 정수이면 약수의 개수가 홀수 이다.
+function solution(left, right) {
+  let answer = 0;
+  for (let i = left; i <= right; i++) {
+    let Isinteger = Number.isInteger(Math.sqrt(i));
+
+    if (Isinteger) {
+      answer -= i;
+    } else {
+      answer += i;
+    }
+  }
+
+  return answer;
+}
