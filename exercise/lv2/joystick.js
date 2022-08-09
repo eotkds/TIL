@@ -74,7 +74,6 @@ function solution(name) {
     a = b;
   }
 
-
   return result1 + move;
 }
 
@@ -108,44 +107,67 @@ function solution(name) {
     }
     a = b;
   }
-
-  //220806 refactoring2 
+}
+//reference 코드1
 function solution(name) {
-  const alphabet_arr = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+  var answer = 0;
+  const length = name.length;
+  let upDownCount = 0;
+  let leftRightCountList = [length - 1]; //한 방향으로 쭉 갔을 때
+  for (let i = 0; i < length; i++) upDownCount += minUpOrDownCount(name[i]);
+  for (let startOfA = 0; startOfA < name.length; startOfA++) {
+    let endOfA = startOfA + 1;
+    while (endOfA < length && name[endOfA] === "A") endOfA++;
+    const [moveToStartOfA, moveToEndOfA] = [startOfA, length - endOfA];
+    leftRightCountList.push(moveToStartOfA * 2 + moveToEndOfA); // 0 -> A.., 0 <- A.., ..A <- -1
+    leftRightCountList.push(moveToEndOfA * 2 + moveToStartOfA); //시작부터 뒤로 가는 경우 ..A <- -1, ..A -> -1, 0 -> A..
+  }
+  answer = upDownCount + Math.min(...leftRightCountList);
+  return answer;
+}
 
-  let change = 0;
-  let move = 0;
-  let a = 0,
-    b = 0, i = 0; // 시작점,도작점, idx
+function minUpOrDownCount(destination) {
+  const Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const index = Alphabet.indexOf(destination);
+  return Math.min(index, Alphabet.length - index); // 이렇게 간단하게도 가능하구나!
+}
 
-    while(){
-      let l = alphabet_arr.indexOf(name[i]);
-      //alphabet 중간 값이 13을 넘으면 뒤에서부터 가는것이 유리
-      if (l > 13) {
-        result1 += 26 - l;
-      } else {
-        result1 += l;
+//reference 코드2
+function solution(name) {
+  let answer = 0;
+  let arr = [0];
+
+  for (let i = 0; i < name.length; i++) {
+    if (name[i] === "A") {
+      // A가 나오는 경우 연속적으로 나온 A의 갯수를 계산한다.
+      if (i === 0) {
+        arr.push(calculateRepeatingA(name) - 1);
+      } else if (name[i - 1] !== "A") {
+        // 연속된 A의 숫자가 현재 index+1보다 큰 경우 차이를 빼서 반대로 돌아간 효과를 준다.
+        arr.push(calculateRepeatingA(name.slice(i)) - (i - 1));
       }
-      
-      if (l > 0) {
-        b = i;
-        let forward = b - a;
-        let back = name.length - b + a;
-        if (forward < back) {
-          move += forward;
-        } else {
-          move += back;
-        }
-      }
-      a = b;
-      //시작은 0 다음 가까운 후보지를 선택하여 찾아간다? 이것을 처음으로 시작하여도 무방할것이다.
+      answer++;
+    } else {
+      answer += calculateCount(name[i]) + 1; // 해당 문자의 자릿수만큼 계산을 하며 오른쪽으로 이동한다.
     }
-    
-   
-    
+  }
 
-    
+  return answer - Math.max(...arr) - 1; // 마지막은 오른쪽으로 이동할 필요가 없기에 1을 빼준다.
+}
 
+function calculateCount(value) {
+  // 현재 문자까지 필요한 조이스틱 이동 횟수를 계산
+  return value.charCodeAt() - 65 < 91 - value.charCodeAt()
+    ? value.charCodeAt() - 65
+    : 91 - value.charCodeAt();
+}
 
-  return change + move;
+function calculateRepeatingA(name) {
+  // 연속으로 나오는 A의 갯수를 계산
+  let count = 0;
+  for (let i = 0; i < name.length; i++) {
+    if (name[i] !== "A") break;
+    count++;
+  }
+  return count;
 }
