@@ -108,7 +108,18 @@ function solution(name) {
     a = b;
   }
 }
-//reference 코드1
+//QuestionBoard 코드1
+/*
+이동에서 한쪽방향으로 가는 것보다 적은 경우의 수만 찾으면 되는 것이다.
+A가아닌 것들 중에서 순방향으로 갔다가 돌아올 경우
+역방향으로 갔다가 순방향으로 돌아올 경우를 넣은 것이다.
+
+
+마지막 A가 아닌경우 돌아가는 거리를 0으로 만듦
+특히 moveToEndOfA 를 다음 A가 없는 경우 굳이 뒤부터 갈 필요 없이 만들었다.
+
+
+*/
 function solution(name) {
   var answer = 0;
   const length = name.length;
@@ -132,7 +143,7 @@ function minUpOrDownCount(destination) {
   return Math.min(index, Alphabet.length - index); // 이렇게 간단하게도 가능하구나!
 }
 
-//reference 코드2
+//QuestionBoard 코드2
 function solution(name) {
   let answer = 0;
   let arr = [0];
