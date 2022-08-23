@@ -37,3 +37,28 @@ function solution(n) {
 
   return count;
 }
+
+//Reference 참고
+function solution(n) {
+  const s = new Set();
+  for (let i = 1; i <= n; i += 2) {
+    s.add(i);
+  }
+  s.delete(1);
+  s.add(2);
+
+  for (let j = 3; j <= Math.sqrt(n); j += 2) {
+    //등식 수정 < -> <=
+    //n이하 수 중에서 소수를 찾는 것인데 범위를 sqrt(n)으로 한것은 조금 이해가 안간다.
+    //아래에서 배수를 찾기는 하지만 말이다!
+    if (s.has(j)) {
+      for (let k = j * 2; k <= n; k += j) {
+        console.log(k);
+        s.delete(k);
+      }
+    }
+  }
+  return s.size;
+}
+
+//에라토스테네스의 체로 1,000,000까지 풀어보기
