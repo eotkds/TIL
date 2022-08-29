@@ -38,7 +38,8 @@ function solution(n) {
   return count;
 }
 
-//Reference 참고
+//Reference 참고 : 161ms
+// 일부 오류코드가 있다고 함.
 function solution(n) {
   const s = new Set();
   for (let i = 1; i <= n; i += 2) {
@@ -62,3 +63,17 @@ function solution(n) {
 }
 
 //에라토스테네스의 체로 1,000,000까지 풀어보기
+function solution(n) {
+  let arr = Array.from({ length: n + 1 }, (x) => (x = true));
+  let count = 0;
+  for (let i = 2; i < arr.length; i++) {
+    if (arr[i] === true) {
+      count++;
+      for (let k = 2; k * i < arr.length; k++) {
+        arr[i * k] = false;
+      }
+    }
+  }
+
+  return count;
+}
