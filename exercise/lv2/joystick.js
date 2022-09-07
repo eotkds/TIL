@@ -182,3 +182,73 @@ function calculateRepeatingA(name) {
   }
   return count;
 }
+
+/**
+ * 재풀이 reference 참고하여
+ * 테스트케이스 17번 실패 :  "AAAA"로만 이루어져 있는거 같음
+ * @param {*} name
+ */
+function solution(name) {
+  //위아래만 정리
+  let alphaMove = 0;
+  for (let i = 0; i < name.length; i++) {
+    let alphaNum = name.charCodeAt(i) - 65;
+    if (alphaNum < 13) {
+      alphaMove += alphaNum;
+    } else {
+      alphaMove += 26 - alphaNum;
+    }
+  }
+  console.log(alphaMove);
+  //최소이동수 검증
+  let move = [name.length - 1]; //한 방향일 경우
+  let point;
+  for (let i = 0; i < name.length; i++) {
+    if (name[i] !== "A") {
+      point = i + 1;
+      while (name[point] === "A" && point < name.length) {
+        point++;
+      }
+      move.push(i * 2 + name.length - point); // i까지 갔다가 뒤로 point까지 가는 경우
+      move.push(i + (name.length - point) * 2); // 뒤로 먼저 갔다가 와서 i까지 가능 경우
+    }
+  }
+  console.log(move);
+  let minMove = Math.min(...move);
+
+  return alphaMove + minMove;
+}
+
+/**
+ * 재풀이 reference 참고하여
+ * 굳이 "A"를 확인할 필요 없이 모든 문자에 대해서 탐색
+ * @param {*} name
+ */
+function solution(name) {
+  //위아래만 정리
+  let alphaMove = 0;
+  for (let i = 0; i < name.length; i++) {
+    let alphaNum = name.charCodeAt(i) - 65;
+    if (alphaNum < 13) {
+      alphaMove += alphaNum;
+    } else {
+      alphaMove += 26 - alphaNum;
+    }
+  }
+  console.log(alphaMove);
+  //최소이동수 검증
+  let move = [name.length - 1]; //한 방향일 경우
+  let point;
+  for (let i = 0; i < name.length; i++) {
+    point = i + 1;
+    while (name[point] === "A" && point < name.length) {
+      point++;
+    }
+    move.push(i * 2 + name.length - point); // i까지 갔다가 뒤로 point까지 가는 경우
+    move.push(i + (name.length - point) * 2); // 뒤로 먼저 갔다가 와서 i까지 가능 경우
+  }
+  console.log(move);
+  let minMove = Math.min(...move);
+
+  return alphaMove + minMove;
+}
