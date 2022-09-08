@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="example3.php" method="post">
+      <input
+        type="radio"
+        name="test"
+        value="design"
+        checked="checked"
+      />디자인<br />
+      <input type="radio" name="test" value="programming" />프로그래밍<br />
+      <input type="radio" name="test" value="planning" />기획<br />
+      <input type="submit" />
+    </form>
+    <br />
+    <br />
+    <br />
+    <form action="example4.php" method="post">
+      관심사 : <br />
+      <select name="interest">
+        <option value="programing">프로그래밍</option>
+        <option value="design">디자인</option>
+        <option value="planning">기획</option>
+      </select>
+      <input type="submit" />
+    </form>
+    <br />
+    <br />
+    <br />
+    <form action="example5.php" method="post">
+      관심사 : <br />
+      <input type="checkbox" name="interest[]" value="programing" />프로그래밍
+      <br />
+      <input
+        type="checkbox"
+        name="interest[]"
+        value="design"
+        checked="checked"
+      />디자인 <br />
+      <input
+        type="checkbox"
+        name="interest[]"
+        value="planning"
+        checked="checked"
+      />기획 <br />
+      <input type="submit" />
+    </form>
+  </body>
+</html>
