@@ -1,0 +1,6 @@
+fwrite coding1
+fwrite coding2
+fwrite coding1
+fwrite coding2
+fwrite coding1
+fwrite coding2

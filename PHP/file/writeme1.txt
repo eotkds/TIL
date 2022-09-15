@@ -1,0 +1,2 @@
+fwrite coding1
+fwrite coding2
