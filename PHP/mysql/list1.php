@@ -18,7 +18,7 @@ echo '<li>'.$row['title'].'</li>';
 // exit;
 if(!empty($_GET['id'])) {
     $topic_result = $conn->query('SELECT * FROM topic WHERE id = '.mysqli_real_escape_string($conn, $_GET['id']));
-    $topic = mysqli_fetch_array($topic_result);
+    $topic = $list_result-> fetch_array(MYSQLI_BOTH);
 }
 ?>
 <!DOCTYPE html>
@@ -61,8 +61,9 @@ if(!empty($_GET['id'])) {
             <nav>
                 <ul>
                     <?php
-                    while($row = mysql_fetch_array($list_result)) {
-                        echo "<li><a href=\"?id={$row['id']}\">".htmlspecialchars($row['title'])."</a></li>";                        }
+                    while($row = $list_result-> fetch_array(MYSQLI_BOTH)) {
+                        echo "<li><a href=\"?id={$row['id']}\">".htmlspecialchars($row['title'])."</a></li>";                        
+                    }
                     ?>
                 </ul>
                 <ul>
@@ -79,7 +80,7 @@ if(!empty($_GET['id'])) {
                 </div>
                 <div>
                     <a href="modify.php?id=<?=$topic['id']?>">수정</a>
-                    <form method="POST" action="process.php?mode=delete">
+                    <form method="POST" action="process1.php?mode=delete">
                         <input type="hidden" name="id" value="<?=$topic['id']?>" />
                         <input type="submit" value="삭제" />
                     </form>
