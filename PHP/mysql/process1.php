@@ -1,27 +1,25 @@
 <?php
-$conn = mysqli_connect('localhost', 'root', 'root7981');
-mysqli_select_db($conn, 'opentutorials');
+$conn = new mysqli('localhost', 'root', 'root7981','opentutorials');
 switch($_GET['mode']){
     case 'insert':
-        $sql ="INSERT INTO topic (title, description, created) VALUES ('".mysqli_real_escape_string($conn, $_POST['title'])."', '".mysqli_real_escape_string($conn, $_POST['description'])."', now())";
-        echo $sql;
-        echo "<br />";
-        echo $_POST["title"];
-        echo "<br />";
-        echo $_POST["description"];
+        $sql ="INSERT INTO topi (title, description, created) VALUES ('".mysqli_real_escape_string($conn, $_POST['title'])."', '".mysqli_real_escape_string($conn, $_POST['description'])."', now())";
 
-        $result = mysqli_query($conn, $sql);
-
-        // mysqli_close($conn);
-        // header("Location: list.php"); 
+        $result = $conn -> query($sql);
+        echo $conn -> connect_errno."<br />";
+        echo $conn -> error;
+        exit();
+        // $conn -> close();
+        header("Location: list1.php"); 
         break;
     case 'delete':
-        mysqli_query($conn, 'DELETE FROM topic WHERE id = '.mysqli_real_escape_string($conn, $_POST['id']));
-        header("Location: list.php"); 
+        $sql = 'DELETE FROM topic WHERE id = '.mysqli_real_escape_string($conn, $_POST['id']);
+        $conn->query($sql);
+        header("Location: list1.php"); 
         break;
     case 'modify':
-        mysqli_query($conn, 'UPDATE topic SET title = "'.mysqli_real_escape_string($conn, $_POST['title']).'", description = "'.mysqli_real_escape_string($conn, $_POST['description']).'" WHERE id = '.mysqli_real_escape_string($conn, $_POST['id']));
-        header("Location: list.php?id={$_POST['id']}");
+        $sql = "UPDATE topic SET title = '".mysqli_real_escape_string($conn, $_POST['title'])."', description = '".mysqli_real_escape_string($conn, $_POST['description'])."' WHERE id = ".mysqli_real_escape_string($conn, $_POST['id']);
+        $conn -> query($sql);
+        header("Location: list1.php?id={$_POST['id']}");
         break;
 }
 ?>

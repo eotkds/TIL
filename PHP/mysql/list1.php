@@ -18,7 +18,7 @@ echo '<li>'.$row['title'].'</li>';
 // exit;
 if(!empty($_GET['id'])) {
     $topic_result = $conn->query('SELECT * FROM topic WHERE id = '.mysqli_real_escape_string($conn, $_GET['id']));
-    $topic = $list_result-> fetch_array(MYSQLI_BOTH);
+    $topic = $topic_result-> fetch_array(MYSQLI_BOTH);
 }
 ?>
 <!DOCTYPE html>
