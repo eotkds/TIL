@@ -1,5 +1,6 @@
 <?php 
 include_once("common1.php");
+
 include_once "./include3.php";
 echo "include4 <br />";
 // include 사용하면 아래 함수를 사용 가능하지만 include3.php에 exit이 있어 종료.
