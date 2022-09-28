@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            background-color: rgb(14, 11, 216);
+            height: 200px;
+            display: flex;
+            /* default value : row */
+            /* flex-direction: column-reverse; */
+            flex-direction: row;
+        }
+        .item{
+            background-color: tomato;
+            color: white;
+            border:1px solid white;
+            /* 전체 flex-grow와 나눠먹는? */
+            /* flex-grow: 1; */
+            /* flex-grow: 1; */
+
+        }
+        .item:nth-child(1){
+            flex-basis: 500px;
+            flex-shrink: 1;
+
+        }
+        .item:nth-child(2){
+            /* flex-grow: 3; */
+            /* 여백이 없어지면 브라우저 화면 크기에 맞춰서 작아진다. */
+            flex-basis: 800px;
+            /* 0을 설정하면 줄지 않는다. 숫자를 사용하면 같은 div와 비율에 맞춰서 줄어 든다. */
+            flex-shrink: 2;
+            
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+    </div>
+</body>
+</html>
