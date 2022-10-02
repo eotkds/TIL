@@ -15,7 +15,6 @@
             display: flex;
             flex-direction: column;
             width:700px;
-            border: 1px solid grey;
         }
         header {
             border-bottom: 1px solid gray;
@@ -29,6 +28,7 @@
         .content {
             display: flex;
         }
+
         .content nav {
             border-right: 1px solid gray;
         }
@@ -39,17 +39,35 @@
             flex-basis: 150px;
             flex-shrink: 0;
         }
+        @media(max-width:500px){
+            .content{
+                flex-direction: column;
+            }
+            .content nav {
+            border-right: none;
+            }
+            .content aside {
+            border-left: none;
+            }
+            nav, aside {
+            flex-basis: auto;
+            flex-shrink: 0;
+            }
+            main{
+                order : 0;
+            }
+            nav {
+                order : 1;
+            }
+            aside {
+                order : 2;
+                display: none;
+            }
+        }
+        
+
         main {
             padding: 10px;
-        }
-        nav {
-            order : 0;
-        }
-        main {
-            order : 1;
-        }
-        aside{
-            order : -1;
         }
     </style>
 </head>
@@ -67,7 +85,7 @@
                 </ul>
             </nav>
             <main>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis veniam totam labore ipsum, nesciunt temporibus repudiandae facilis earum, sunt autem illum quam dolore, quae optio nemo vero quidem animi tempore aliquam voluptas assumenda ipsa voluptates.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus beatae aperiam aliquam alias distinctio! Blanditiis magnam eveniet dolorem. Velit vero saepe cumque dolor, ad qui excepturi dignissimos ipsam quae nam?
             </main>
             <aside>
                 AD
