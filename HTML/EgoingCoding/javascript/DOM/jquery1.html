@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <ul>
+      <li>html</li>
+      <li>css</li>
+      <li>javascript</li>
+    </ul>
+    <script>
+      /*
+      ul, li가 먼저 나오도록 순서가 있어야한다.
+      */
+      var li = $('li');
+      li.map(function(idx, ele){
+        console.log(idx, ele);
+        $(ele).css('color', 'green');
+      });
+    </script>
+</body>
+</html>
