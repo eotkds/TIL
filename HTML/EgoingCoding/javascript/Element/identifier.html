@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>html</li>
+        <li>css</li>
+        <li id="active" class="important current">JavaScript</li>
+    </ul>
+    <script>
+    console.log(document.getElementById('active').tagName)
+    /* tagname은 바꿀 수 없다. 읽기 전용이기 때문이다.*/
+    var active = document.getElementById('active');
+    console.log(active.id);
+    active.id = 'deactive';
+    console.log(active.id);
+    
+    /*class 만 따로 지정하기에는 불편한 점이 있다고 한다.*/
+    // class 값을 변경할 때는 프로퍼티의 이름으로 className을 사용한다.
+    console.log(active.className);
+    active.className = "important current";
+    console.log(active.className);
+
+    // 클래스를 추가할 때는 아래와 같이 문자열의 더한다.
+    active.className += " readed"
+
+    </script>
+</body>
+</html>
