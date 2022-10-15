@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="target">ulstart
+        <li>HTML</li>
+        <li>CSS</li>
+    </ul>
+    <input type="button" onclick="get();" value="get" />
+    <input type="button" onclick="set();" value="set" />
+    <script>
+        function get(){
+            var target = document.getElementById('target');
+            alert(target.outerText);
+        }
+        function set(){
+            var target = document.getElementById('target');
+            target.outerText = "<li>JavaScript Core</li><li>BOM</li><li>DOM</li>";
+        }
+    </script>
+</body>
+</html>

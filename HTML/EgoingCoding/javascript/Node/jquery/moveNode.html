@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="target" id="target1">
+        target 1
+    </div>
+    <p>hello</p>
+    <div id="source">source</div>
+     
+    <input type="button" value="append source to target 1" id="btn1" />
+    <input type="button" value="after source to target 1" id="btn2" />
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script>
+        $('#btn1').click(function(){
+            $('#target1').append($('#source'));
+        })
+        $('#btn2').click(function(){
+            $('#target1').after($('#source'));
+        })
+    </script>
+</body>
+</html>
