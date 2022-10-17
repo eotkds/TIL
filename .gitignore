@@ -102,7 +102,8 @@ dist
 
 # TernJS port file
 .tern-port
-/gnuboard5
+gnuboard5
 sess_*
 example/
 
+.vscode

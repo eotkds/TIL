@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li id="target1">html</li> 
+        <li id="target2"><span>css</span></li>
+        <li>JavaScript</li>
+    </ul>
+    <script>
+        var t1 = document.getElementById('target1').firstChild;
+        var t2 = document.getElementById('target2').firstChild;
+        console.log(t1.nodeValue);
+        console.log(t1.data);
+        console.log(t2.nodeValue); // null ?
+        console.log(t2.data); // undefined ?
+        </script>
+</body>
+</html>
