@@ -20,18 +20,34 @@
         #target{
             width:100px;
             height:2000px;
+            padding:0px;
+            margin:0px;
+            border:1px solid #1065e6;
+        }
+        #scrollBtn{
+            position: absolute;
+            top :150px;
+
+            
         }
     </style>
-    <input type="button" id="scrollBtn" value="scroll(0, 1000)" />
-    <script>
-        document.getElementById('scrollBtn').addEventListener('click', function(){
-            window.scrollTo(0, 1000);
-        })
-    </script>
+        <input type="button" id="scrollBtn" value="scroll(0, 1000)" />
     <div>
         <div id="target">
             Coding
         </div>
     </div>
+    <script>
+        document.getElementById('scrollBtn').addEventListener('click', function(){
+            // 절대위치 이동
+            // window.scrollTo(0, 500);
+            // 상대위치 이동
+            window.scrollBy(0, 500);
+        })
+        var t = document.getElementById('target')
+        setInterval(function(){
+        console.log('getBoundingClientRect : ', t.getBoundingClientRect().top, 'pageYOffset:', window.pageYOffset);
+        }, 1000)
+        </script>
 </body>
 </html>
