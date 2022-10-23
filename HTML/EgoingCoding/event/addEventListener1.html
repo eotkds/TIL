@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" id="target" value="button" />
+<script>
+    var t = document.getElementById('target');
+    /*
+    addEventListener방식과 property 방식의 차이점
+    addEventListener방식은 여러 이벤트를 등록할 수 있다.
+    반면, 프로퍼티 방식은 한개의 이벤트만 등록 가능하다.
+    나중에 등록된 이벤트만 작동한다. 프로퍼티로 덮어 쓰기 때문이다.
+    */
+
+    t.addEventListener('click', function(event){
+        // alert('Hello world, '+event.target.value);
+        alert('Hello1')
+    });
+    t.addEventListener('click', function(event){
+        // alert('Hello world, '+event.target.value);
+        alert('Hello2')
+    });
+</script>
+<!-- 
+    <script>
+        // IE8 이하 일 경우
+        var t = document.getElementById('target');
+        if(t.addEventListener){
+            t.addEventListener('click', function(event){
+                alert('Hello world, '+event.target.value);
+            }); 
+            // 아래 온클릭이 다르점이니 참고하자.
+        } else if(t.attachEvent){
+            t.attachEvent('onclick', function(event){
+                alert('Hello world, '+event.target.value);
+            })
+        }
+
+    </script>
+
+
+
+ -->
+</body>
+</html>
