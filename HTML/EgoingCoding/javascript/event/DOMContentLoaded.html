@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var t = document.getElementById('target1');
+        // null 발생
+        console.log(t);
+    </script>
+    <script>
+        // onload 방식으로 해결 할 수 있음; html이 모두 준비된 후 onload가 활성화.
+        window.onload = function(){
+            var t = document.getElementById('target2');
+            console.log('window객체 방식')
+            console.log(t);
+        }
+    </script>
+    <script>
+        //onload 방식은 addListener방식으로 사용하는 것이 더욱 효율 적이라고함.
+        window.addEventListener('load', function(){
+            var t = document.getElementById('target3');
+            console.log('addListener 방식')
+            console.log(t);
+        });
+        //하지만 onload방식은 가장 마지막으로 발생하기 때문에 다운로드할 리소스가 늦어일 경우 마지막으로 발생됨;
+    </script>
+    <script>
+        window.addEventListener('DOMContentLoaded', function(){
+            var t = document.getElementById('target');
+            console.log('DOMContentLoaded 방식')
+            console.log(t);
+        });
+    </script>
+    </head>
+</head>
+<body>
+    <p id="target1">Hello</p>
+    <p id="target2">Hello</p>
+    <p id="target3">Hello</p>
+    <p id="target">Hello</p>
+</body>
+</html>
