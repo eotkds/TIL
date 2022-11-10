@@ -10,3 +10,16 @@ echo "<br />";
 echo $vb."<br />";
 
 ?>
+
+
+<?php 
+$tmp = $_SERVER['QUERY_STRING'];
+echo $tmp."<br />";
+var_export(explode("=",$tmp));
+echo "<br />";
+var_export(explode("=",$tmp)[0]);
+echo "<br />";
+
+// Undefined offset 에러 발생!!
+// var_export(explode("=",$tmp)[1]); 
+?>
