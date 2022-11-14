@@ -1,0 +1,19 @@
+<html>
+    <body>
+        <ul>
+            <li>test2</li>
+        </ul>
+        <ul class="foo">
+            <li>test</li>
+        </ul>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+        <script type="text/javascript">
+            /* 함수 선언과동시에 함수를 불러오는 방식이라고 함 */
+            (function($){            
+                $('ul.foo').click( function() {
+                    $('li', this).css('background-color','red');
+                });
+            })(jQuery)
+        </script>
+    </body>
+</html>
