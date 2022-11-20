@@ -154,7 +154,7 @@
                 <input class="btn" type="button" value="input:checked" /> - 체크박스 중 체크가 된 엘리먼트를 찾아내는 선택자 <br />
         </fieldset>
         <script>
-            $('input').live('click', function() {
+            $('input').on('click', function() {
                 $this = $(this);
                 $('*').removeClass('selected');
                 switch($this.attr('value')) {
