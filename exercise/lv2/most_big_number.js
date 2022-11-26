@@ -1,59 +1,56 @@
 /*
-무조건 오른쪽으로 이동, 0을 만나면 종료하고 한칸 내려가보기?
-
-1. 양쪽 0을 만나거나 길이 없는경우 종료
-2. length : length 를 갔을 경우 성공
-
-
+1. length작은 것부터 정령
+2. 큰수정렬
+3. 문자로 만들기
 */
-
-function solution(maps) {
-    let answer = [];
-    let trial = 0;
-    let y = maps.length;
-    let x = maps[0].length;
-    let a = 0; //아래로 내려갈 경우 x축 기록
-    for(let i = 0; i < y; i ++){
-        
-        
-        while(a < x){
-            if(maps[i][a] === 1) {
-                a++
-            }else{
-                trial
-                break;
-            }
+function solution(numbers) {
+    let answer = '';
+    let arr = [];
+  	let max = 0
+    
+  for(let i = 0 ; i < numbers.length ; i++){
+        let a = numbers[i] + ""
+        arr.push([numbers[i] + "", a.length])
+      	if(max < a.length){
+          max = a.length
         }
-        trial[1] = i;
-        if(trial === [y-1, x-1]) break;
     }
-    return answer;
-}
 
-/*
-두번째 시도 1을 찾아가도록
-*/
-function solution(maps) {
-    let answer = [];
-    let trial = 0;
-    let y = maps.length;
-    let x = maps[0].length;
-    let a = 0; //x축 기록
-    let b = 0; //y축 기록 
-    while(b < y){
-        
-        
-        while(a < x){
-            if(maps[b][a] === 1) {
-                trial++
-                a++
-            }else{
-                a-- // 시작점으로 가야 한다.
-                break;
-            }
-        }
-        b++
-        trial++;
+    for(let i = 0 ; i < arr.length ; i++){
+        arr[i][0] = arr[i][0].padEnd(max, arr[i][0][arr[i][0].length - 1] )
     }
+
+    arr.sort((a,b)=> {
+      if(a[0] < b[0]){
+        return 1
+      }
+      if(a[0] > b[0]){
+        return - 1
+      }
+      if(a[0] === b[0]){
+        if(a[1] < b[1]){
+          return 1
+        }
+        if(a[1] > b[1]){
+          return -1
+        }
+        return 0
+      }
+      
+    })
+
+	for(let i = 0 ; i < arr.length ; i++){
+        let digit = arr[i][1];
+        for(let j = 0 ; j < digit ; j++){
+            answer += arr[i][0][j]
+        }
+    }
+	
+  
+  while(answer.length > 1 && answer[0] === '0'){
+        answer = answer.substring(1)
+    }
+    
+
     return answer;
 }
