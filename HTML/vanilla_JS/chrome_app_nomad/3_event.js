@@ -1,9 +1,15 @@
 const title = document.querySelector(".hello:first-child");
 console.dir(title);
 
+
 function handleTitleClick() {
-    console.log("title was clicked!")
-    title.style.color = "blue";
+    console.log(title.style.color);
+   
+    if(title.style.color === "blue"){
+        title.style.color = "tomato";
+    }else{
+        title.style.color = "blue";
+    }
 }
 
 function handleWindowResize(){
@@ -16,8 +22,13 @@ function handleWindowCopy(){
 }
 
 function handleWindowOffline(){
-    alert('copier');
+    alert('no WIFI');
 }
+
+function handleWindowOonline(){
+    alert('ALL GOOD');
+}
+
 
 title.addEventListener("click", handleTitleClick);
 title.addEventListener("mouseenter", function(){
@@ -26,4 +37,5 @@ title.addEventListener("mouseenter", function(){
 
 window.addEventListener("resize", handleWindowResize);
 window.addEventListener("copy", handleWindowCopy);
-window.addEventListener("copy", handleWindowOffline);
+window.addEventListener("offline", handleWindowOffline);
+window.addEventListener("online", handleWindowOonline);
