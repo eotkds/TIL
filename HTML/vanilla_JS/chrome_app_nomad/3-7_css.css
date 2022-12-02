@@ -7,6 +7,10 @@ h1 {
     transition: color .5s ease-in-out;
 }
 
-.active {
+.sexy_font {
+    font-family: serif;
+}
+
+.clicked {
     color: tomato;
 }
