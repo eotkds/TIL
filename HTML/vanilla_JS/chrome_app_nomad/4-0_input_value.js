@@ -8,6 +8,9 @@ const loginButton = loginForm.querySelector("#login-form button");
 // console.log(loginInput);
 // console.log(loginButton);
 
+const greeting = document.querySelector("#greeting");
+const HIDDEN_CLASSNAME = "hidden";
+
 /* 4-3 */
 const link = document.querySelector("a");
 
@@ -21,6 +24,10 @@ function onLoginBtnClick(){
 }
 function onLoginSubmit(e){
     console.log(e);
+    const username = loginInput.value;
+    loginForm.classList.add(HIDDEN_CLASSNAME);
+    greeting.innerText = "Hello " + username;
+    greeting.classList.remove(HIDDEN_CLASSNAME);
     e.preventDefault();
     // if(value === ""){
     //     alert("Please write your name");
