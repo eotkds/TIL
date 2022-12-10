@@ -8,6 +8,9 @@ const loginButton = loginForm.querySelector("#login-form button");
 // console.log(loginInput);
 // console.log(loginButton);
 
+/* 4-3 */
+const link = document.querySelector("a");
+
 function onLoginBtnClick(){
     const value = loginInput.value;
     if(value === ""){
@@ -25,6 +28,14 @@ function onLoginSubmit(e){
     //     alert("Your name is too long");
     // }
 }
+
+/* 4-3 */
+function handleLinkClick(e){
+    e.preventDefault();
+    console.log(e);
+    alert("abc");
+
+}
 /**
  * form, submit 방식을 사용하면 
  * addEventListener 방식을 사용할 필요가 없다.
@@ -34,3 +45,10 @@ function onLoginSubmit(e){
 
 // loginButton.addEventListener("click", onLoginBtnClick);
 loginForm.addEventListener("submit", onLoginSubmit);
+
+/*
+ink.addEventListener("click", handleLinkClick());
+괄호를 넣을 경우 바로 실행되고 끝나버린다.
+
+*/
+link.addEventListener("click", handleLinkClick);
