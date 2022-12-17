@@ -9,8 +9,6 @@ const USERNAME_KEY = "username";
 
 
 function onLoginSubmit(e){
-    e.preventDefault();
-    console.log(e);
     const username = loginInput.value;
     localStorage.setItem(USERNAME_KEY, username);
     loginForm.classList.add(HIDDEN_CLASSNAME);
@@ -19,7 +17,7 @@ function onLoginSubmit(e){
 
 function paintGreetings(username){
     greeting.innerText = `Hello ${username}`;
-    greeting.classList.remove(username);
+    greeting.classList.remove(HIDDEN_CLASSNAME);
 }   
 
 loginForm.addEventListener("submit", onLoginSubmit);
