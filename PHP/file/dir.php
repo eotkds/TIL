@@ -1,10 +1,10 @@
 <?php 
 echo getcwd()."<br />";
-chdir("../");
-echo getcwd()."<br />";
+// chdir("../");
+// echo getcwd()."<br />";
 
 
-$dir = "../";
+$dir = "./";
 $files1 = scandir($dir);
 $files2 = scandir($dir, 1);
 
