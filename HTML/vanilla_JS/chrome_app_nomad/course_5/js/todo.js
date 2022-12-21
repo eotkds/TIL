@@ -2,6 +2,7 @@ const toDoForm = document.getElementById("todo-form");
 const toDoInput = toDoForm.querySelector("input"); // document 뿐만 아니라 tag로도 검색 가능.
 const toDoList = document.getElementById("todo-list");
 
+const TODOS_KEY = "todos"
 const toDos = [];
 
 function saveToDos(){
@@ -44,3 +45,11 @@ function handleToDoSubmit(event){
 }
 
 toDoForm.addEventListener("submit", handleToDoSubmit);
+
+const savedToDos = localStorage.getItem(TODOS_KEY);
+if(savedToDos){
+    const parsedToDos = JSON.parse(savedToDos);
+    parsedToDos.forEach((el)=>{
+        paintToDo(el);
+    })
+}
