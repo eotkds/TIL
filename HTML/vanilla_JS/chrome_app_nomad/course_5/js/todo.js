@@ -36,7 +36,6 @@ function paintToDo(newTodo){
 }
 
 function handleToDoSubmit(event){
-    event.preventDefault();
     const newTodo = toDoInput.value;
     toDoInput.value ="";
     toDos.push(newTodo);
@@ -49,7 +48,12 @@ toDoForm.addEventListener("submit", handleToDoSubmit);
 const savedToDos = localStorage.getItem(TODOS_KEY);
 if(savedToDos){
     const parsedToDos = JSON.parse(savedToDos);
+    /*
+    toDos를  let으로 선언하고,
+    toDos = parsedToDos;
+    */
     parsedToDos.forEach((el)=>{
         paintToDo(el);
+        toDos.push(el);
     })
 }
