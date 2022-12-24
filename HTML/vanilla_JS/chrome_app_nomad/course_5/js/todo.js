@@ -5,6 +5,9 @@ const toDoList = document.getElementById("todo-list");
 const TODOS_KEY = "todos"
 const toDos = [];
 
+const savedToDos = localStorage.getItem(TODOS_KEY);
+
+
 function saveToDos(){
     const JSON_toDos = JSON.stringify(toDos);
     localStorage.setItem("todos", JSON_toDos);
@@ -12,6 +15,7 @@ function saveToDos(){
 }
 
 function deleteToDo(e){
+    e.preventDefault()
     /*
     console.log(e);
     console.log(e.target);
@@ -19,7 +23,18 @@ function deleteToDo(e){
     this.parentNode.remove();
     */
    const li = e.target.parentNode;
-   li.remove();
+   /*
+   li태그를 찾아서 index로 array를 지워주었다.
+   let lis_arr = toDoList.querySelectorAll("li");
+   lis_arr.forEach((el, i) => {
+    if(el === li){
+        toDos.splice(i, 1);
+        saveToDos();
+    }
+   })
+   */
+  console.log(li.id);
+//    li.remove();
 
 }
 
@@ -27,25 +42,31 @@ function paintToDo(newTodo){
     const liTodo = document.createElement("li");
     const spanTodo = document.createElement("span");
     const button =document.createElement("button");
+    liTodo.id = newTodo.id;
     button.innerText ="❌";
     button.addEventListener("click",deleteToDo)
     liTodo.appendChild(spanTodo);
     liTodo.appendChild(button);
-    spanTodo.innerText = newTodo;
+    spanTodo.innerText = newTodo.text;
     toDoList.appendChild(liTodo);
 }
 
 function handleToDoSubmit(event){
     const newTodo = toDoInput.value;
     toDoInput.value ="";
-    toDos.push(newTodo);
-    paintToDo(newTodo);
+    const newToDoObj = {
+        text: newTodo,
+        id: Date.now(),
+
+    };
+    toDos.push(newToDoObj);
+    paintToDo(newToDoObj);
     saveToDos()
 }
 
 toDoForm.addEventListener("submit", handleToDoSubmit);
 
-const savedToDos = localStorage.getItem(TODOS_KEY);
+
 if(savedToDos){
     const parsedToDos = JSON.parse(savedToDos);
     /*
