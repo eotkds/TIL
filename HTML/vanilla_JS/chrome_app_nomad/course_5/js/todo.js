@@ -63,7 +63,7 @@ function handleToDoSubmit(event){
     toDos.push(newToDoObj);
     paintToDo(newToDoObj);
     saveToDos()
-    e.preventDefault()
+    event.preventDefault()
 }
 
 toDoForm.addEventListener("submit", handleToDoSubmit);
