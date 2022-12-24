@@ -3,7 +3,7 @@ const toDoInput = toDoForm.querySelector("input"); // document 뿐만 아니라 
 const toDoList = document.getElementById("todo-list");
 
 const TODOS_KEY = "todos"
-const toDos = [];
+let toDos = [];
 
 const savedToDos = localStorage.getItem(TODOS_KEY);
 
@@ -15,7 +15,6 @@ function saveToDos(){
 }
 
 function deleteToDo(e){
-    e.preventDefault()
     /*
     console.log(e);
     console.log(e.target);
@@ -33,8 +32,10 @@ function deleteToDo(e){
     }
    })
    */
-  console.log(li.id);
-//    li.remove();
+   let newToDo_arr = toDos.filter((el)=> el.id != li.id);
+   toDos = newToDo_arr;
+   saveToDos();
+   li.remove();
 
 }
 
@@ -62,6 +63,7 @@ function handleToDoSubmit(event){
     toDos.push(newToDoObj);
     paintToDo(newToDoObj);
     saveToDos()
+    e.preventDefault()
 }
 
 toDoForm.addEventListener("submit", handleToDoSubmit);
