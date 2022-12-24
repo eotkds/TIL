@@ -5,6 +5,9 @@ function get_microtime()
     return ((float)$usec + (float)$sec);
 }
 
+echo microtime();
+echo "<br />";
+
 echo get_microtime();
 echo "<br />";
 // Prints the day

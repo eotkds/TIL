@@ -8,11 +8,12 @@ class A{
     public function sayHello(){
         echo "<br />";
         echo "abc<br />";
-        return __FILE__;
+        return dirname(dirname(__FILE__));
     }
 
 }
 
 $say = new A();
 echo $say->sayHello();
+echo "<br />";
 ?>
