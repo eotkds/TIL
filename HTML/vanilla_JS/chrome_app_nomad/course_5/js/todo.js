@@ -32,7 +32,11 @@ function deleteToDo(e){
     }
    })
    */
+   /*
    let newToDo_arr = toDos.filter((el)=> el.id != li.id);
+   */
+  //parseInt로 타입 불일치 해결
+   let newToDo_arr = toDos.filter((el)=> el.id !== parseInt(li.id));
    toDos = newToDo_arr;
    saveToDos();
    li.remove();
