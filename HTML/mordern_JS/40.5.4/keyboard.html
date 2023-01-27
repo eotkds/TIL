@@ -12,8 +12,8 @@
     <script>
         const $input = document.querySelector('input[type=text]');
         const $msg = document.querySelector('.message');
-
         $input.onkeyup = e => {
+            console.log(e);
             if(e.key !== 'Enter') return;
 
             $msg.textContent = e.target.value;
