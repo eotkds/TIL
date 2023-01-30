@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>event<button>BTN</button></p>
+    <script>
+        document.body.addEventListener('click', ()=>{
+            console.log('body');
+        });
+
+        document.querySelector('p').addEventListener('click', ()=>{
+            console.log('paragraph');
+        }, true);
+
+        document.querySelector('button').addEventListener('click', ()=>{
+            console.log('button');
+        });
+    </script>
+</body>
+</html>
