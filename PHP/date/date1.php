@@ -10,6 +10,9 @@ echo "Today is " . date("l")."<br />";
 echo "The time is " . date("h:i:sa"). "<br />";
 echo "The time is " . date("h:i:sA"). "<br />";
 echo "The time is " . date("H:i:sA"). "<br />";
+
+$week_form = (int)date("w", time());
+echo "The week integer is " . $week_form. "<br />";
 $gt['time'] = time();
 
 echo "The time is {$gt['time']}". "<br />";
