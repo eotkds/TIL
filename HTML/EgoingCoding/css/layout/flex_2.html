@@ -12,7 +12,7 @@
             display: flex;
             /* default value : row */
             /* flex-direction: column-reverse; */
-            flex-direction: row;
+            /* flex-direction: row; */
         }
         .item{
             background-color: tomato;
@@ -31,9 +31,9 @@
         .item:nth-child(2){
             /* flex-grow: 3; */
             /* 여백이 없어지면 브라우저 화면 크기에 맞춰서 작아진다. */
-            flex-basis: 800px;
+            flex-basis: 500px;
             /* 0을 설정하면 줄지 않는다. 숫자를 사용하면 같은 div와 비율에 맞춰서 줄어 든다. */
-            flex-shrink: 2;
+            flex-shrink: 1;
             
 
         }
