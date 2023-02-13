@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button class="btn">0</button>
+    <script>
+        class App {
+            constructor(){
+                this.$button = document.querySelector('.btn');
+                this.count = 0;
+                this.$button.onclick = this.increase.bind(this);
+                //화살표 함수를 사용할 경우
+                //this.$button.onclick = this.increase
+            }
+
+            increase(){
+                this.$button.textContent = ++this.count;
+                //아니면 화살표 함수 사용
+                //increase = () =>  this.$button.textContent = ++this.count;
+            }
+
+        }
+        new App();
+    </script>
+</body>
+</html>
