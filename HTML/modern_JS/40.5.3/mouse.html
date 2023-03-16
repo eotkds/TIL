@@ -19,15 +19,17 @@
     <div class="box"></div>
     <script>
         const $box = document.querySelector('.box');
+
         const initialMousePos = {x: 0, y: 0 };
         const offset = {x : 0, y : 0 };
         console.log($box);
         const move = e => {
             offset.x = e.clientX - initialMousePos.x;
             offset.y =  e.clientY - initialMousePos.y;
-            console.log(offset);
-
-            $box.style.transform = `translate3d(${offset.x}px, ${offset.y}px, 0)`;
+            console.log(e.clientX, e.clientY);
+            console.log(offset.x, offset.y);
+            console.dir($box);
+            $box.style.transform = `translate(${offset.x}px, ${offset.y}px)`;
         };
         $box.addEventListener('mousedown', e =>{
 
