@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- 참고 사이트 : https://ko.javascript.info/size-and-scroll -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="dummy"></div>
+    <div id="parent">
+        <div id="example">
+           What is Lorem Ipsum?
+Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        </div>
+    </div>
+    <style>
+
+    .dummy {
+        width: 100%;
+        height: 300px;
+    }
+    #parent {
+        width: 100%;
+        padding: 20px;
+        margin: 20px 0 0;
+    }
+    #example {
+        width: 300px;
+        height: 200px;
+        border: 20px solid #E8C48F;
+        padding: 20px;
+        overflow: auto;
+        margin: 0 0 0 100px;
+    }   
+    </style>
+    <script>
+        let example = document.getElementById('example');
+        console.log("window.innerHeight: ", window.innerHeight);
+        console.log("offsetTop: ", example.offsetTop);
+        console.log("offsetLeft: " ,example.offsetLeft);
+        console.log("offsetWidth: ", example.offsetWidth);
+        console.log("offsetHeight: ", example.offsetHeight);
+        console.log("clientWidth: " ,  example.clientWidth, "content(padding포함)한 영역의 너비 + scrollbar 너비 제외");
+        console.log("clientHeight: " ,  example.clientHeight, "content(padding포함)한 영역의 너비");
+        console.log("clientTop: " ,  example.clientTop, "border의 두께");
+        console.log("clientLeft: " ,  example.clientLeft, "border의 두께");
+        console.log("scrollWidth: ", example.scrollWidth);
+        console.log("scrollHeight: ", example.scrollHeight);
+        console.log("scrollLeft: ", example.scrollLeft);
+        console.log("scrollTop: ", example.scrollTop);
+        // console.log(example.clientHeight);
+        // console.log(example.scrollHeight);
+        // console.log(example.offsetHeight);
+        console.log(example.getBoundingClientRect());
+    </script>
+</body>
+</html>
