@@ -9,5 +9,6 @@ console.log(global.bar); // 2
 
 // 전역 함수
 // function baz() { return 3; }
+// node.js에서는 global.baz = function () { return 3; };
 global.baz = function () { return 3; };
 console.log(global.baz()); // 3
