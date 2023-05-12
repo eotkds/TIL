@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(a, b, c){
+                let no = "No";
+                if(a + b <= c) return no;
+                if(a + c <= b) return no;
+                if(b + c <= a) return no;
+                return "Yse";
+            }
+
+            console.log(solution(6, 7, 11));
+        </script>
+    </body>
+</html>
