@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+           function solution(a, arr){
+                let answer = 0;
+                for(let i = 0; i<arr.length; i++){
+                   let str = arr[i] + "";
+                   if(str[1] == a){
+                          answer++;
+                   }
+                   // 또는 arr[i] % 10 을 활용 할 수도 있겠다.
+                }
+
+                return answer;
+            }
+
+            arr=[25, 23, 11, 47, 53, 17, 33];
+            console.log(solution(3, arr));
+        </script>
+    </body>
+</html>

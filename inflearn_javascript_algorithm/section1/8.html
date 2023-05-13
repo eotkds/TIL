@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+           function solution(arr){
+             
+                let tryArr = [];
+                let answer = [];
+                for(let i = 0 ; i < arr.length; i++){
+
+                    for(let j = 0; j < arr.length; j++){
+                        if(i === j) continue;
+                        tryArr.push([i, j]);
+                    }
+                }
+                
+                for(let i = 0 ; i < tryArr.length ; i++ ){
+                    let sum = 0;
+                    answer = [];
+                    for(let j = 0; j < arr.length; j++){
+                        if(tryArr[i].includes(j)) continue;
+                        sum += arr[j];
+                        answer.push(arr[j]);
+                    }
+                    if(sum === 100){
+                        return answer;
+                    }
+                }
+            }
+
+            let arr=[20, 7, 23, 19, 10, 15, 25, 8, 13];
+            console.log(solution(arr));
+        </script>
+    </body>
+</html>

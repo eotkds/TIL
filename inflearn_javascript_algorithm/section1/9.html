@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+           function solution(str){
+            let answer = "";
+            for(let i = 0 ; i < str.length ; i++){
+                if(str[i] === "A"){
+                    answer += "#";
+                }else{
+                    answer += str[i];
+                }
+            }
+            return answer;
+           }
+
+            let str = "BANANA";
+            console.log(solution(str));
+        </script>
+    </body>
+</html>
