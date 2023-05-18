@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+           function solution(str){
+            let answer = 0;
+            let alphabet = "abcdefghijklmnopqrstuvwxyz";
+            alphabet = alphabet.toUpperCase().split("");
+
+            for(let i = 0 ; i < str.length ; i++){
+                if(alphabet.includes(str[i])){
+                    answer++;
+                }
+            }
+
+            return answer;
+           }
+
+           let str="KoreaTimeGood";
+            console.log(solution(str));
+        </script>
+    </body>
+</html>
