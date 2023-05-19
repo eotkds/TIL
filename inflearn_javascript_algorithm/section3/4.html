@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(s, t){
+                let answer = [];
+                let count = 0;
+                let left = 0;
+                let right = 0;
+                for(let i = 0; i < s.length; i++){
+                    for(let j = i ; j < s.length; j++){
+                        if(s[i] === t){
+                            break;
+                        }
+                        if(s[j] === t) break;
+                        count++;
+                    }
+                    right = count;
+                    count = 0;
+                    for(let k = i; k >= 0; k--){
+                        if(s[i] === t){
+                            break;
+                        }
+                        if(s[k] === t) break;
+                        count++;
+                    }
+                    left = count;
+                    count = 0;
+                    if(left < right){
+                        answer.push(left);
+                    }else{
+                        answer.push(right);
+                    }
+                }
+                return answer;
+            }
+            
+            let str="teachermode";
+            console.log(solution(str, 'e'));
+        </script>
+    </body>
+</html>
