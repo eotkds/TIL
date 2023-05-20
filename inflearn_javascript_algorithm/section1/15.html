@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+           function solution(str){
+            answer = "";
+            if(str.length % 2 === 0){
+                answer = str[str.length / 2 - 1] + str[str.length / 2];
+            }else{
+                answer = str[Math.floor(str.length / 2)];
+            }
+            return answer;
+           }
+
+           let str="study";
+            console.log(solution(str));
+        </script>
+    </body>
+</html>
