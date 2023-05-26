@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(arr){   
+                let count = 0;
+                for(let i = 0 ; i < arr.length ; i++){
+                    for(let j = 0 ; j < arr[i].length ; j++){
+                        let targetNum = arr[i][j];
+                        let up, down, left, right
+                        i - 1 < 0 ? up = 0 : up = arr[i - 1][j]
+                        i + 1 > arr.length - 1 ? down = 0 : down = arr[i + 1][j]
+                        left = arr[i][j - 1];
+                        isNaN(left) ? left = 0 : left
+                        right = arr[i][j + 1];
+                        isNaN(right) ? right = 0 : right
+                        if(targetNum > Math.max(up, down, left, right)) count++
+                        // console.log(targetNum, Math.max(up, down, left, right), count);
+                        // console.log(up, down, left, right);
+                    }
+                }
+                return count;
+            }
+            let arr=[[5, 3, 7, 2, 3], 
+                     [3, 7, 1, 6, 1],
+                     [7, 2, 5, 3, 4],
+                     [4, 3, 6, 4, 1],
+                     [8, 7, 3, 5, 2]];
+
+            console.log(solution(arr));
+        </script>
+    </body>
+</html>
