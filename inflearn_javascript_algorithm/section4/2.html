@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function isPrime(n){
+                if(n <= 1) return false;
+                let divisor = 2;
+                while(n > divisor){
+                    if(n % divisor === 0) return false;
+                    divisor++;
+                }
+                return true;
+            }
+            function solution( arr){
+                let answer = [];
+                arr.forEach(el => {
+                    let num = el.toString().split("").reverse().join("")
+                    num = parseInt(num);
+                    if(isPrime(num)) answer.push(num);
+                });
+                return answer;
+            }
+            
+            let arr=[32, 55, 62, 20, 250, 370, 200, 30, 100];
+            console.log(solution(arr));
+        </script>
+    </body>
+</html>
