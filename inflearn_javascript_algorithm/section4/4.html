@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(n, arr){
+                // 제일 비싼 상품을 50% 할인 하는 경우
+                let answer = 0;
+                let maxPrice = [0, 0]; // 최초 한 건만 할인해야 하기 위해서 idx까지 입력
+                arr.forEach((ele, idx) => {
+                    let price = ele[0];
+                    if(price > maxPrice[0]) {
+                        maxPrice[0] = price;
+                        maxPrice[1] = idx;
+                    }
+                });
+                let discountedArr = arr.map((ele, idx) => {
+                    let price = ele[0];
+                    let delivery = ele[1];
+                    if(ele === maxPrice[0] && idx === maxPrice[1]){
+                        price /= price / 2;
+                    }
+                    return price + delivery;
+                }).sort( (a, b) => a - b);
+                discountedArr.reduce((acc, cur)=> {
+                    if(acc + cur <= n) answer++;
+                    return acc + cur;
+                }, 0)
+                return answer;
+            }
+            
+            let arr=[[6, 6], [2, 2], [4, 3], [4, 5], [10, 3]];
+            console.log(solution(28, arr));
+        </script>
+    </body>
+</html>
