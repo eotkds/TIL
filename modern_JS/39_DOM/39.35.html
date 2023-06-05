@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <ul id="foo">Hello</ul>
+    <script>
+        // 문서 노드의 nodeValue 프로퍼티를 참조한다.
+        console.log(document.nodeValue); // null
+
+        // 요소 노드의 nodeValue 프로퍼티를 참조한다.
+        const $foo = document.getElementById('foo');
+        console.log($foo.nodeValue); // Hello
+
+        // 텍스트 노드의 nodeValue 프로퍼티를 참조한다.
+        const $textNode = $foo.firstChild;
+        console.log($textNode.nodeValue); // Hello
+        
+    </script>
+</body>
+</html>

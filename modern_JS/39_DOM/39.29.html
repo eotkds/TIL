@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <ul id="fruits">
+    </ul>
+    <script>
+        // 노드 탐색의 기점이 된느 #fruits 요소 노드를 취득한다.
+        const $fruits = document.getElementById('fruits');
+
+        // #fruits 요소에 자식 노드가 존재하는지 확인한다.
+        // hasChildNodes() 메서드는 자식 노드가 존재하면 true를 반환한다.(텍스트노드 포함)
+        console.log($fruits.hasChildNodes()); // true
+    </script>
+</body>
+</html>
