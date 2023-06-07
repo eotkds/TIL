@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <input type="text" id="user" value="ungmo2">
+    <script>
+        // HTML 요소에 지정한 어트리뷰트 값, 즉 초기 상태 값을 변경한다.
+        // document.querySelector('#user').setAttribute('value', 'ungmo3');
+        document.querySelector('#user').value = 'ungmo3';
+
+        // HTML 요소에 지정한 어트리뷰트 값, 즉 초기 상태 값을 취득한다.
+        console.log(document.querySelector('#user').getAttribute('value')); // ungmo2
+    </script>
+</body>
+</html>
