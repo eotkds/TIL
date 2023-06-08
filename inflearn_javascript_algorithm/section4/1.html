@@ -9,7 +9,7 @@
                 let max = 0;
                 let index =0;
                 let sumArr = arr.map((el, idx) => {
-                    let sum = el.toString().split("").reduce((a, b) => Number(a) + Number(b), 0);
+                    let sum = el.toString().split("").reduce((a, b) => a + Number(b), 0);
                     if(sum > max){
                         max = sum;
                         index = idx;

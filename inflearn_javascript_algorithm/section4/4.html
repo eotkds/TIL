@@ -24,8 +24,9 @@
                     }
                     return price + delivery;
                 }).sort( (a, b) => a - b);
+                console.log(discountedArr);
                 discountedArr.reduce((acc, cur)=> {
-                    if(acc + cur <= n) answer++;
+                    if(acc <= n) answer++;
                     return acc + cur;
                 }, 0)
                 return answer;

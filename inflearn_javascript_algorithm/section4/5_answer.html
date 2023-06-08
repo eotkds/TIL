@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(n, arr){
+                let result = new Set();
+                for(let i = 0; i < arr.length ; i ++){
+                    for(let j = i + 1; j < arr.length ; j ++){
+                        for(let k = j + 1; k < arr.length ; k ++){
+                            let sum = arr[i] + arr[j] + arr[k];
+                            result.add(sum);
+                        }
+                    }
+                }
+                let sortedArr = [...result].sort((a,b) => b - a)
+                console.log(sortedArr);
+                return sortedArr[n - 1];
+            }
+            
+            let arr=[13, 15, 34, 23, 45, 65, 33, 11, 26, 42];
+            console.log(solution(3, arr));
+        </script>
+    </body>
+</html>
