@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <input type="text" id="user" value="ungmo2">
+    <script>
+        const $input = document.querySelector('#user');
+
+        // 사용자가 input 요소의 입력필드에 값을 입력할 때마다 input 요소 노드의 value 프로퍼티 값,
+        // 즉 최신 상태값을 취득한다. value 프로퍼티 값은 사용자의 입력에 의해 동적으로 변경된다.
+
+        $input.oninput = () => {
+            console.log("value 어트리뷰트 값",$input.getAttribute('value'));
+            console.log("value 프로퍼티 값",$input.value);
+        };
+
+        
+        
+    </script>
+</body>
+</html>

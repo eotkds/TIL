@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <ul class="users">
+        <li id="1" data-user-id="7621">Lee</li>
+        <li id="2" data-user-id="9524">Kim</li>
+    </ul>
+    <script>
+        const users = [...document.querySelector('.users').children];
+
+        // user-id가 '7621'인 li 요소를 취득한다.
+        const admin = users.find(user => user.dataset.userId === '7621');
+
+        // user-id가 '7621'인 요소 노드에 새로운 data 어트리뷰트를 추가한다.
+        admin.dataset.role = 'admin';
+        console.log(admin.dataset); 
+    </script>
+</body>
+</html>
