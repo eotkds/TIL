@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>4-4 졸업선물</title>
+    </head>
+    <body>
+        <script>
+            function solution(n, arr){
+                // 모든 경우의 수를 생각해야함
+                let answer = [];
+                for(let i = 0 ; i < arr.length ; i++){
+                    let totalArr = [];
+                    let count = sum = 0;
+                    for(let j = 0 ; j < arr.length ; j++){
+                        if(i===j){
+                            totalArr[j] = ( arr[j][0] / 2 )+ arr[j][1]
+                        }else {
+                            totalArr[j] = arr[j][0] + arr[j][1]
+                        }
+                    }
+                    totalArr.sort((a,b)=> a - b)
+                    
+                    for(let k = 0 ; k < totalArr.length ; k++){
+                        sum += totalArr[k];
+                        if(sum <= n) count++;
+                    }
+                    answer.push(count);
+
+                }
+                return Math.max(...answer);
+            }
+            
+            let arr=[[6, 6], [2, 2], [4, 3], [4, 5], [10, 3]];
+            console.log(solution(28, arr));
+        </script>
+    </body>
+</html>
