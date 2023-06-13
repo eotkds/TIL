@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>5. 학급회장</title>
+    </head>
+    <body>
+        <!-- 윈도우 슬라이딩 강의를 듣고 -->
+        <script>
+            function solution(str){
+                let answer;
+                let sH = new Map();
+                for(let x of str){
+                    if(sH.has(x)) sH.set(x, sH.get(x)+1);
+                    else sH.set(x, 1);
+                }
+                let max=Number.MIN_SAFE_INTEGER;
+
+                for(let [key, val] of sH){
+                    if(val>max){
+                        max=val;
+                        answer=key;
+                    }
+                }
+                
+                return answer;
+            }
+            let str="BACBACCACCBDEDE"
+            console.log(solution(str));
+        </script>
+    </body>
+</html>

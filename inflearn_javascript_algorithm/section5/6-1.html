@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>5. 학급회장</title>
+    </head>
+    <body>
+        <!-- 윈도우 슬라이딩 강의를 듣고 -->
+        <script>
+            function solution(str){
+                let answer = {};
+                let max = 0;
+                let president = "";
+                for(let i = 0 ; i < str.length ; i++){
+                    let candidate = str[i];
+                    if(!answer[candidate]){
+                        answer[candidate] = 1;
+                    }else{
+                        answer[candidate]++;
+                    }
+                }
+                for(let candidate in answer){
+                    if(answer[candidate] > max) {
+                        president = candidate;
+                        max = answer[candidate]
+                    }
+                }
+                return president;
+            }
+            let str="BACBACCACCBDEDE"
+            console.log(solution(str));
+        </script>
+    </body>
+</html>
