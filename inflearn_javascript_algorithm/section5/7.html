@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>7. 아나그램</title>
+    </head>
+    <body>
+        <!-- 윈도우 슬라이딩 강의를 듣고 -->
+        <script>
+            function solution(a, b){
+                let answer = 'YES';
+                let aMap = new Map();
+                let bMap = new Map();
+                for(let i = 0 ; i < a.length ; i++){
+                    if(aMap.has(a[i])){
+                        aMap.set(a[i], aMap.get(a[i]) + 1);
+                    }else{
+                        aMap.set(a[i], 1);
+                    }
+                    if(bMap.has(b[i])){
+                        bMap.set(b[i], bMap.get(b[i]) + 1);
+                    }else{
+                        bMap.set(b[i], 1);
+                    }
+                }
+                // console.log(aMap);
+                // console.log(bMap);
+                for(let x of aMap){
+                    let key = x[0]
+                    let val = x[1]
+                    if(!bMap.has(key)) answer = 'NO';
+                    if(bMap.get(key) !== val) answer = 'NO';
+                }
+
+                return answer;
+            }
+            let a="abaCC";
+            let b="Caaab";
+            console.log(solution(a, b));
+        </script>
+    </body>
+</html>
