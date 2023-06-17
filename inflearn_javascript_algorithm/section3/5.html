@@ -1,21 +1,21 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>출력결과</title>
+        <title>3-5 문자열 압축</title>
     </head>
     <body>
         <script>
             function solution(str){
                 let answer = "";
-                let count = 0;
+                let count = 1;
                 for(let i = 0 ; i < str.length ; i++){
                     if(str[i] === str[i+1]){
                         count++;
                     }else{
                         answer += str[i];
-                        if(count !== 0){
-                            answer += count+1;
-                            count = 0;
+                        if(count  > 1){
+                            answer += count;
+                            count = 1;
                         }
                     }
                 }

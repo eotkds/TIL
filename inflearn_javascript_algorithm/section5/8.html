@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>8. 모든 아나그램 찾기</title>
+    </head>
+    <body>
+        <script>
+            function isAnagram(slide, str2){
+                let hash1 = new Map();
+                for(let x of slide){
+                    if(hash1.has(x)) hash1.set(x, hash1.get(x) + 1);
+                    else hash1.set(x, 1);
+                }
+                for(let x of str2){
+                    if(!hash1.has(x) || hash1.get(x) == 0) return false
+                    hash1.set(x, hash1.get(x) - 1); 
+                }
+                return true;
+            }
+            
+            function solution(a, b){
+                let answer = 0;
+                let slide = [];
+                for(let i = 0 ; i < b.length ; i++){
+                    slide.push(a[i]);
+                }
+                if(isAnagram(slide, b)) answer++;
+                for(let i = b.length ; i < a.length ; i++){
+                    slide.push(a[i]);
+                    slide = slide.slice(1);
+                    if(isAnagram(slide, b)) answer++;
+                }
+                return answer;
+            }
+            let a="bacaAacba";
+            let b="abc";
+            console.log(solution(a, b));
+        </script>
+    </body>
+</html>
