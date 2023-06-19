@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>8. 모든 아나그램 찾기</title>
+    </head>
+    <body>
+        <!-- 강의를 듣고 -->
+        <script>
+            function isAnagram(map1, map2){
+                if(map1.size !== map2.size) return false;
+                for(let [key, val] of map1){
+                    if(!map2.has(key) || map2.get(key) ==! val) return false;
+                }
+                return true;
+            }
+            
+            function solution(a, b){
+                let answer = 0;
+                let bH = new Map();
+                let aH = new Map();
+                for(let x of b){
+                    if(bH.has(x)) bH.set(x, bH.get(x) + 1);
+                    else bH.set(x, 1);
+                }
+            
+            let len = b.length - 1;
+            for(let i = 0 ; i < len ; i++){
+                if(aH.has(a[i])) aH.set(a[i], aH.get(a[i]) + 1);
+                else aH.set(a[i], 1);
+            }
+            let lt = 0;
+            for(let i = len ; i < a.length ; i++){
+                if(aH.has(a[i])) aH.set(a[i], aH.get(a[i]) + 1);
+                else aH.set(a[i], 1);
+                if(isAnagram(aH, bH)) answer++;
+                aH.set(a[lt], aH.get(a[lt]) - 1);
+                if(aH.get(a[lt]) === 0) aH.delete(a[lt]);
+                lt++;
+            }
+            return answer;
+        }
+            let a="bacaAacba";
+            let b="abc";
+            console.log(solution(a, b));
+        </script>
+    </body>
+</html>
