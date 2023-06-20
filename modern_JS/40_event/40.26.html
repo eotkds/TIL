@@ -14,7 +14,11 @@
         const $msg = document.querySelector('.message');
         $input.onkeyup = e => {
             console.log(e);
+            // e.key는 입력한 키 값을 문자열로 반환한다.
+            // 입력한 키가  'Enter', 즉 엔터 키가 아니면 무시한다.
+
             if(e.key !== 'Enter') return;
+            
             $msg.textContent = e.target.value;
             e.target.value = '';
         };
