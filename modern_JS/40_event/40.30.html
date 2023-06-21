@@ -7,18 +7,21 @@
     <title>Document</title>
 </head>
 <body>
-    <p>event<button>BTN</button></p>
+    <p>event event<button>BTN</button></p>
     <script>
+        // 버블링 단계의 이벤트를 케치한다.
         document.body.addEventListener('click', ()=>{
-            console.log('body');
+            console.log('Handler for body');
         });
 
+        // 캡쳐링 단계의 이벤트를 캐치한다.
         document.querySelector('p').addEventListener('click', ()=>{
-            console.log('paragraph');
+            console.log('Handler for paragraph');
         }, true);
 
+        // 타깃 단계의 이벤트를 캐치한다.
         document.querySelector('button').addEventListener('click', ()=>{
-            console.log('button');
+            console.log('Handler for button');
         });
     </script>
 </body>
