@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>6-1. 올바른 괄호</title>
+    </head>
+    <body>
+        <!-- 강의를 보고 -->
+        <script>
+            function solution(str){
+                let stackArr = [];
+                let poppedStr = 1;
+                for(let i = 0 ; i < str.length ; i++){
+                    if(str[i] === "(" ) stackArr.push("(");
+                    if(str[i]=== ")"){
+                        poppedStr = stackArr.pop();
+                    }
+                    console.log(stackArr);
+                    if(!poppedStr||poppedStr == ")") return "NO";
+                }
+                return stackArr.length === 0 ? "YSE" : "NO";
+            }
+            let str = "(()(()))()";
+            console.log(solution(str));
+        </script>
+    </body>
+</html>
