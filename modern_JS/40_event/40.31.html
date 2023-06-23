@@ -15,9 +15,6 @@
             width: 100px;
             cursor: pointer;
 
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
             user-select: none;
         }
         #fruits .active {
@@ -39,12 +36,18 @@
         const $fruits = document.getElementById('fruits');
         const $msg = document.querySelector('.msg');
 
-        function activate({target}){ // {} 중괄호를 하는 이유는 e.target을 생략하기 위한 일까?
 
-            if(!target.matches('#fruits > li')) return;
+        // 사용자 클릭에 의해 선택된 내비게이션 아이템(li 요소)에 active 클랙스를 추가하고
+        // 그 외의 모든 내비게이션 아이템의 active 클래스를 제거한다.
+        function activate({target}){ 
+            // {} 중괄호를 하는 이유는 e.target을 생략하기 위한 일까?
+            // 구조 분해 할당?이다. Event 객체 전체가 아닌 Event.target만 전달하기 위해
+
+
 
             console.log({target});
             console.log(target);
+            
             [...$fruits.children].forEach($fruit => {
                 $fruit.classList.toggle('active', $fruit === target);
                 $msg.textContent = target.id;
@@ -52,12 +55,10 @@
         }
         
 
-        $fruits.onclick = activate;
-        
-        //li 요소에 각각 이벤트를 넣기 보다는 위 방식처럼 위에 요소에 적용
-        // document.getElementById('apple').onclick = activate;
-        // document.getElementById('banana').onclick = activate;
-        // document.getElementById('orange').onclick = activate;
+        //모든 내비게이션 아이템(li 요소)에 이벤트 위임
+        document.getElementById('apple').onclick = activate;
+        document.getElementById('banana').onclick = activate;
+        document.getElementById('orange').onclick = activate;
 
     </script>
 </body>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #fruits {
+            display: flex;
+            list-style-type: none;
+            padding: 0;
+        }
+        #fruits li {
+            width: 100px;
+            cursor: pointer;
+            user-select: none;
+        }
+        #fruits .active {
+            color: red;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul id="fruits">
+            <li id="apple" class="active">Apple</li>
+            <li id="banana">banana</li>
+            <li id="orange">orange</li>
+        </ul>
+    </nav>
+    <div>navigation items :  <em class="msg">apple</em></div>
+    <script>
+        const $fruits = document.getElementById('fruits');
+        const $msg = document.querySelector('.msg');
+
+
+        // 사용자 클릭에 의해 선택된 내비게이션 아이템(li 요소)에 active 클랙스를 추가하고
+        // 그 외의 모든 내비게이션 아이템의 active 클래스를 제거한다.
+        function activate({target}){ 
+            // {} 중괄호를 하는 이유는 e.target을 생략하기 위한 일까?
+            // 구조 분해 할당?이다. Event 객체 전체가 아닌 Event.target만 전달하기 위해
+
+            // 이벤트를 발생시킨 요소(target)가 ul#fruits의 자식 요소가 아니라면 무시한다.
+            if(!target.matches('#fruits > li')) return;
+
+            console.log({target});
+            console.log(target);
+            [...$fruits.children].forEach($fruit => {
+                $fruit.classList.toggle('active', $fruit === target);
+                $msg.textContent = target.id;
+            });
+        }
+        
+        // 이벤트 위임: 상위 요소(ul#fruits)는 하위 요소의 이벤트를 캐치할 수 있다.
+        $fruits.onclick = activate;
+
+    </script>
+</body>
+</html>
