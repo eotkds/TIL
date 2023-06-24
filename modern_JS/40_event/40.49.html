@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <script>
+        // MouseEvent 생성자 함수로 click 이벤트 타입의 커스텀 이벤트 객체를 생성
+        const customEvent  = new MouseEvent('click', {
+            bubbles: true,
+            cancelable: true,
+            clientX: 100,
+            clientY: 100,
+        });
+
+        console.log(customEvent.clientX); // 100
+        console.log(customEvent.clientY); // 100
+
+        // keyboardEvent 생성자 함수로 keyup 이벤트 타입의 커스텀 이벤트 객체를 생성
+        const keyboardEvent = new KeyboardEvent('keyup', {
+            key: 'Enter',
+        });
+
+        console.log(keyboardEvent.key); // Enter
+
+        // 이벤트 생성자 함수로 생성한 커스텀 이벤트는 isTrusted가 false다.
+        console.log(customEvent.isTrusted); // false
+    </script>
+</body>
+</html>
