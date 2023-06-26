@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>6-2. 괄호문자제거</title>
+    </head>
+    <body>
+        <script>
+            function solution(str){
+                let stack = [];
+                let answer = "";
+                for(let i = 0 ; i < str.length ; i++){
+                    if(str[i] === "(") {
+                        stack.push("(");
+                    }else if (str[i] === ")"){
+                        stack.pop();
+                    }else{
+                        if(stack.length !== 0 ){
+                            continue;
+                        }else{
+                            answer += str[i]
+                        }
+                    }
+                }
+                return answer;
+            }
+            let str = "(A(BC)D)EF(G(H)(IJ)K)LM(N)";
+            console.log(solution(str));
+        </script>
+    </body>
+</html>

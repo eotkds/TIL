@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>6-3. 크레인 인형뽑기</title>
+    </head>
+    <body>
+        <!-- 강의를 보고 -->
+        <script>
+            function stackSys(arr, val, count){
+                if(arr[arr.length - 1] === val){
+                    arr.pop();
+                    count += 2;
+                }else{
+                    arr.push(val)
+                }
+                console.log(val, arr, count);
+                return count;
+            }
+            function solution(a, b){
+                let tmpArr = a;
+                let answer = 0;
+                let stack = [];
+                for(let i = 0 ; i < b.length ; i++){
+                    for(let j = 0 ; j < tmpArr.length ; j++){
+                        let col = b[i] - 1;
+                        if(tmpArr[j][col] > 0){
+                            answer = stackSys(stack, tmpArr[j][col], answer);
+                            tmpArr[j][col] = 0;
+                            break;
+                        }
+                    }
+                }
+                return answer;
+            }
+            let a=[[0,0,0,0,0],
+                   [0,0,1,0,3],
+                   [0,2,5,0,1],
+                   [4,2,4,4,2],
+                   [3,5,1,3,1]];
+
+            let b=[1, 5, 3, 5, 1, 2, 1, 4];
+            console.log(solution(a, b));
+        </script>
+    </body>
+</html>

@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>6-2. 괄호문자제거</title>
+    </head>
+    <body>
+        <!-- 강의를 보고 -->
+        <script>
+            function solution(str){
+                let stack = [];
+                let idx = 0;
+                let popped = "";
+                for(let i = 0 ; i < str.length ; i++){
+                    if(str[i] === ")"){
+                        for(let j = stack.length ; j > 0 ; j--){
+                            popped = stack.pop();
+                            console.log(popped);
+                            if(popped === "(") break;
+                        }
+                    }else{
+                        stack.push(str[i]);
+                    }
+                    console.log(stack);
+                }
+                return stack.join("");
+            }
+            let str = "(A(BC)D)EF(G(H)(IJ)K)LM(N)";
+            console.log(solution(str));
+        </script>
+    </body>
+</html>
