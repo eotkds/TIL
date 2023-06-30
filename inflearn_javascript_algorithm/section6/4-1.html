@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>4. 후위식 연산</title>
+    </head>
+    <body>
+        <script>
+            function calc(sign, num1, num2){
+                let a = parseInt(num1);
+                let b = parseInt(num2);
+                let result = 0;
+                switch(sign){
+                    case "+":
+                    result = a + b;
+                    break
+                    case "-":
+                    result = a - b;
+                    break
+                    case "*":
+                    result = a * b;
+                    break
+                    case "/":
+                    result = a / b;
+                    break
+                }
+                return result;
+            }
+            function solution(str){
+                let answer = 0;
+                let tmpArr = ["+", "-", "*", "/"];
+                let stack = [];
+                let a = b = 0;
+                for(let i = 0 ; i < str.length ; i++){
+                    if(tmpArr.includes(str[i])){
+                        b = stack.pop();
+                        a = stack.pop();
+                        answer = calc(str[i], a, b);
+                        stack.push(answer);
+                    }else{
+                        stack.push(str[i]);
+                    }
+                    console.log(stack);
+                }
+                return answer;
+            }
+            let str="352+*9-"
+            console.log(solution(str));
+        </script>
+    </body>
+</html>
