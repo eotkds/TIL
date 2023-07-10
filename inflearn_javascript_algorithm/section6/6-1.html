@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>6. 공주 구하기</title>
+    </head>
+    <body>
+        <script>
+            function dial(arr, idx, num){
+                if(arr.length === 1){
+                    return arr[0];
+                }
+                if(idx > arr.length - 1){
+                    idx -= arr.length
+                }
+                let tmpNum = arr.splice(idx, 1);
+                let i = idx + num - 1;
+                if(i > arr.length - 1){
+                    i -= arr.length
+                }
+                console.log(arr, tmpNum);
+                return dial(arr, i, num);
+            }
+            function solution(n, k){
+                let tmpArr = Array.from({length: n}, (v, i)=> i + 1)
+                let answer = dial(tmpArr, k - 1, k);
+                
+                return answer;
+            }
+            let n = 8;
+            let k = 3;
+            console.log(solution(n, k));
+        </script>
+    </body>
+</html>
