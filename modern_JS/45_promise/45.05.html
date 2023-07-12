@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <script>
+        let todos;
+
+        const get = url => {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', url);
+            xhr.send();
+
+            xhr.onload = () => {
+                if (xhr.status === 200) {
+                    todos = JSON.parse(xhr.response);
+                    console.log(todos);
+                } else {
+                    console.error('Error', xhr.status, xhr.statusText);
+                }
+            };
+        };
+
+        get('https://jsonplaceholder.typicode.com/todos/1');
+        console.log(todos);
+    </script>
+</body>
+</html>
