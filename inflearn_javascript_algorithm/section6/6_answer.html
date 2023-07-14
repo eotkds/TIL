@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>6. 공주 구하기</title>
+    </head>
+    <body>
+        <script>
+            function solution(n, k){
+                let tmpArr = Array.from({length: n}, (v, i)=> i + 1)
+                let answer
+                while (tmpArr.length) {
+                    for(let i = 0 ; i < k - 1 ; i++){
+                        tmpArr.push(tmpArr.shift());
+                    }
+                    tmpArr.shift();
+
+                    if(tmpArr.length ===  1) answer = tmpArr.shift();
+                }
+                
+                return answer;
+            }
+            let n = 8;
+            let k = 3;
+            console.log(solution(n, k));
+        </script>
+    </body>
+</html>
