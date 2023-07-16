@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <script>
+        new Promise( resolve => resolve('done!') )
+            .then(v => console.log(v), e => console.error(e) );
+
+
+        new Promise( (resolve, reject) => reject(new Error('rejected')) )
+            .then(v => console.log(v), e => console.error(e) );
+
+        // catch
+        // new Promise( (_, reject)=> reject(new Error('rejected!')) )
+        new Promise( (_, reject)=> _('resolve') ) // this will not be caught
+            .catch(e => console.error(e) );
+        
+        // finally
+        new Promise( resolve => resolve('done!') )
+            .finally(() => console.log('finally!') );
+    </script>
+</body>
+</html>

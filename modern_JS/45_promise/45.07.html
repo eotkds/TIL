@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <script>
+        const get = (url, callback) => {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', url);
+            xhr.send();
+
+            xhr.onload = () => {
+                if (xhr.status === 200) {
+                    callback(JSON.parse(xhr.response));
+                } else {
+                    console.error(`${xhr.status} ${xhr.statusText}`);
+                }
+            };
+        };
+        const url = 'https://jsonplaceholder.typicode.com';
+        get(`${url}/todos/1`, ({userId}) => {
+            console.log(userId);
+            // post의 userId를 사용하여 user 정보를 취득
+            get(`${url}/users/${userId}`, userInfo => {
+                console.log(userInfo);
+            });
+        });
+        
+    </script>
+</body>
+</html>

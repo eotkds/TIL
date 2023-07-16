@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <script>
+        const fulfilled = new Promise(resolve => {
+            resolve('done!');
+        });
+        console.log(fulfilled);
+        const reject = new Promise((resolve, reject) => {
+            reject(new Error('Error!'));
+        });
+        console.log(reject);
+    </script>
+</body>
+</html>

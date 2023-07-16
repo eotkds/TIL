@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <script>
+        const promiseGet = url => {
+            return new Promise((resolve, reject) => {
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', url);
+                xhr.send();
+
+                xhr.onload = () => {
+                    if (xhr.status === 200) {
+                        resolve(console.log(JSON.parse(xhr.response)));
+                    } else {
+                        reject(new Error(xhr.status));
+                    }
+                };
+            });
+        };
+        promiseGet('https://jsonplaceholder.typicode.com/todos/1');
+    </script>
+</body>
+</html>
