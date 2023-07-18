@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1. 선택 정렬</title>
+</head>
+<body>
+    <script>
+        function solution(a){
+               let tmpArr = a;
+               for(let i = 0 ; i < tmpArr.length ; i++){
+                    let min = Number.MAX_SAFE_INTEGER;
+                    let tmpNum = 0;
+                    let idx = 0;
+                    for(let j = i ; j < tmpArr.length ; j++){
+                        if(tmpArr[j] < min ){
+                            min = tmpArr[j];
+                            idx = j;
+                        }
+                    }
+                    tmpNum = tmpArr[i];
+                    tmpArr[i] = min;
+                    tmpArr[idx] = tmpNum; 
+               }
+               return tmpArr;
+            }
+            let a=[13, 5, 11, 7, 23, 15];
+            console.log(solution(a));
+    </script>
+</body>
+</html>
