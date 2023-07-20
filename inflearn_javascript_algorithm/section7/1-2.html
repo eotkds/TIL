@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1. 선택 정렬</title>
+</head>
+<body>
+    <script>
+        function solution(arr){
+               let tmpArr = arr;
+               for(let i = 0 ; i < tmpArr.length - 1; i++){
+                    let idx = i;
+                    for(let j = i+1 ; j < tmpArr.length ; j++){
+                        if(tmpArr[j] < tmpArr[idx] ){
+                            idx = j;
+                        }
+                    }
+                   [tmpArr[i], tmpArr[idx]] = [tmpArr[idx], tmpArr[i]];
+                   console.log(tmpArr);
+               }
+               return tmpArr;
+            }
+            let arr=[13, 5, 11, 7, 23, 15];
+            console.log(solution(arr));
+    </script>
+</body>
+</html>
