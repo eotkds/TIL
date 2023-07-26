@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4. 삽입 정렬</title>
+</head>
+<body>
+    <script>
+        function solution(arr){
+               let tmpArr = arr;
+            for(let i = 1 ; i < tmpArr.length ; i++){
+                let key  = tmpArr[i], j = 0;
+
+                for(j = i - 1 ; j >= 0 ; j--){
+                    if(tmpArr[j] > key){
+                        tmpArr[j+ 1] = tmpArr[j];
+                    }else{
+                        break;
+                    }
+                }
+                tmpArr[j+ 1] = key;
+                console.log(tmpArr);
+            }
+               return tmpArr;
+        }
+            let arr=[11, 7, 5, 6, 10, 9];
+            console.log(solution(arr));
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4. 삽입 정렬</title>
+</head>
+<body>
+<!-- 강의를 보고 복사하는 방식으로 -->
+    <script>
+        function solution(arr){
+               let tmpArr = arr;
+               let key = 0, idx = 0;
+            for(let i = 1 ; i < tmpArr.length ; i++){
+                key  = tmpArr[i];
+                idx = i;
+                for(let j = i - 1 ; j >= 0 ; j--){
+                    if(tmpArr[j] > key){
+                        tmpArr[j+ 1] = tmpArr[j];
+                        idx = j;
+                    }
+                }
+                 tmpArr[idx] = key;
+                console.log(tmpArr);
+            }
+               return tmpArr;
+            }
+            let arr=[11, 7, 5, 6, 10, 9];
+            console.log(solution(arr));
+    </script>
+</body>
+</html>
