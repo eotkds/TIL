@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5. LRU</title>
+</head>
+<body>
+<!-- 강의를 보고 복사하는 방식으로 -->
+    <script>
+        function solution(a, arr){
+            let cache = new Array(a).fill(0);
+            for(let i = 0 ; i < arr.length ; i++){
+                let work = arr[i]
+                let idx = cache.indexOf(work);
+                let startP = idx < 0 ? cache.length - 2 : idx - 1;
+                for(let j = startP ; j >= 0 ; j--){
+                    cache[j + 1] = cache[j];
+                }
+                cache[0] = work;
+                console.log(cache);
+            }
+               return cache;
+            }
+            let a = 5;
+            let arr=[1, 2, 3, 2, 6, 2, 3, 5, 7];
+            console.log(solution(a, arr));
+    </script>
+</body>
+</html>
