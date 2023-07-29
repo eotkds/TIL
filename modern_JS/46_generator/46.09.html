@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 제너레이터 함수
+        function* genFunc(){
+            const x = yield 1;
+
+
+            const y = yield (x + 10);
+
+            return x + y;
+        }
+
+        const generator = genFunc(0);
+
+        let res = generator.next();
+        console.log(res); // {value: 1, done: false}
+
+        res = generator.next(10);
+        console.log(res); // {value: 20, done: false}
+
+        res = generator.next(30);
+        console.log(res); // {value: 30, done: true}
+    </script>
+</body>
+</html>

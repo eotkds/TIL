@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 제너레이터 함수
+        function * genFunc(){
+            try{
+                yield 1;
+                yield 2;
+                yield 3;
+            } catch(e){
+                console.error(e);
+            }
+        }
+        const generator = genFunc();
+
+        console.log(generator.next());
+        console.log(generator.next());
+        console.log(generator.throw('Error!'));
+        // console.log(generator.return('End!'));
+
+    </script>
+</body>
+</html>
