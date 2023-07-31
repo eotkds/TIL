@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7. 좌표 정렬</title>
+</head>
+<body>
+    <!-- sort 함수를 이용해서 -->
+    <script>
+        function solution(arr){
+            let tmpArr = JSON.parse(JSON.stringify(arr));
+            tmpArr.sort((a, b) => {
+                if(a[0] === b[0]){
+                    return a[1] < b[1] ? -1 : 1;
+                }
+                return a[0] - b[0];
+            })
+            return tmpArr;
+        }
+        let arr=[[2, 7], [1, 3], [1, 2], [2, 5], [3, 6]];
+        console.log(solution(arr));
+    </script>
+</body>
+</html>
