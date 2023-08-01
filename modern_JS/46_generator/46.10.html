@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 무한 이터러블을 생성하는 함수
+        const infiniteFibonacci = (function(){
+            let [pre, cur] = [0, 1];
+
+            return {
+                [Symbol.iterator]() { return this; },
+                next() {
+                    [pre, cur] = [cur, pre + cur];
+                    return { value: cur };
+                }
+            };
+        }());
+
+        // infiniteFibonacci는 무한 이터러블이다.
+        for(const num of infiniteFibonacci){
+            if(num > 10000) break;
+            console.log(num);
+        }
+    </script>
+</body>
+</html>
