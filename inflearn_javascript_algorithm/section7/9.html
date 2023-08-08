@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9. 결혼식</title>
+</head>
+<body>
+    <!-- 강의보고 다시 재풀이 -->
+    <script>
+        function solution(arr){
+            let tmpArr = JSON.parse(JSON.stringify(arr));
+            let schedule = [];
+            let count = 0;
+            let answer = 0;
+
+            // 오는 시간 0, 가는 시간 1
+            for(let i = 0 ; i < tmpArr.length ; i++){
+                let timeArr =[];
+                for(let j = 0 ; j < tmpArr[i].length ; j++){
+                    schedule.push([tmpArr[i][j], j]);
+                }
+            }
+            schedule.sort((a, b)=> {
+                if(a[0] === b[0]) return b[1] - a[1]; // 가는 것을 먼저 처리
+                return a[0] - b[0];
+            })
+            for(let i = 0 ; i < schedule.length ; i++){
+                if(schedule[i][1] === 0 ){ // 입장
+                    count++;
+                }else{
+                    count--;
+                }
+                if(count > answer){
+                    answer = count;
+                }
+            }
+            console.log(schedule);
+            let endTime = 0;
+            return answer;
+        }
+        let arr=[[14, 18], [12, 15], [15, 20], [20, 30], [5, 14]];
+        console.log(solution(arr));
+    </script>
+</body>
+</html>
