@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9. 이분검색</title>
+</head>
+<body>
+    <script>
+        function solution(num, arr){
+            let tmpArr = JSON.parse(JSON.stringify(arr));
+            tmpArr.sort((a, b) => a - b);
+            for(let i = 0 ; i < tmpArr.length ; i++){
+                if(tmpArr[i] === num){
+                    return i + 1;
+                }
+            }
+            return
+        }
+        let arr=[23, 87, 65, 12, 57, 32, 99, 81];
+        console.log(solution(32, arr));
+    </script>
+</body>
+</html>

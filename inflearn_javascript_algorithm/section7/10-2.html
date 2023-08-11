@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9. 이분검색</title>
+</head>
+<body>
+    <!-- 강의로 보고 -->
+    <script>
+        function solution(num, arr){
+            let tmpArr = JSON.parse(JSON.stringify(arr));
+            tmpArr.sort((a, b) => a - b);
+            let lt = 0, mid = 0;
+            let rt = tmpArr.length - 1;
+            console.log(tmpArr);
+            while(lt <= rt){
+                mid = Math.floor( (lt+rt) / 2);
+                if(tmpArr[mid] === num ) return mid + 1;
+                if(tmpArr[mid] > num){
+                    rt = mid - 1;
+                }else{
+                    lt = mid + 1;
+                }
+            }
+            return
+        }
+        let arr=[23, 87, 65, 12, 57, 32, 99, 81];
+        console.log(solution(32, arr));
+    </script>
+</body>
+</html>
