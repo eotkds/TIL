@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11. 마구간 정하기</title>
+</head>
+<body>
+    <script>
+        function solution(num, arr){
+            let lt = 1
+            let rt = Math.max(...arr);
+            let answer = [];
+
+            arr.sort((a,b) => a - b);
+
+            while(lt <= rt){
+                let mid = Math.floor((lt + rt) / 2); // 간격
+                let cnt = 1; // 마굿간 수
+                let targetNum = arr[0]; // 항상 처음에 배치해야 할까?
+                for(let i = 1 ; i < arr.length ; i++){
+                    if(arr[i] - targetNum >= mid){
+                        cnt++;
+                        targetNum = arr[i];
+                    }
+                }
+                if(cnt >= num){
+                    answer.push(mid);
+                    lt = mid + 1;
+                }else{
+                    rt = mid - 1;
+                }
+            }
+            return Math.max(...answer);
+        }
+        let arr=[1, 2, 8, 4, 9];
+        console.log(solution(3, arr));
+    </script>
+</body>
+</html>
