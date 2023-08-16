@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1. 재귀함수 - 이진수 출력</title>
+</head>
+<body>
+    <!-- 강의를 보고 -->
+    <script>
+        function solution(num){
+            let answer = "";
+            function DFS(L){
+                if(L === 0) return;
+                DFS(Math.floor(L / 2));
+                answer += (L % 2);
+            }
+            DFS(num);
+            return answer;
+        }
+        let num = 11;
+        console.log(solution(num));
+    </script>
+</body>
+</html>
