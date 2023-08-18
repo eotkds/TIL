@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3. 이진트리순회(DFS:깊이우선탐색) </title>
+</head>
+<body>
+    <!-- 강의를 보고 -->
+    <!-- 후위순위 -->
+    <script>
+        function solution(){
+            function DFS(L){
+                if(L > 7) return;
+                DFS(L * 2);
+                DFS(L*2 +1);
+                console.log(L);
+            }
+            DFS(1);
+        }
+        console.log(solution());
+    </script>
+</body>
+</html>
