@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4. 부분집합 구하기(DFS) </title>
+</head>
+<body>
+<!-- 강의를 보고 -->
+    <script>
+        function solution(n){
+            let arr = [];
+            function DFS(L){
+                if(L > 3) return;
+                arr.push(L);
+                DFS(L + 1);
+                console.log(arr);
+                arr.pop();
+                DFS(L + 1);
+            }
+            DFS(1);
+        }
+        console.log(solution(3));
+    </script>
+</body>
+</html>
