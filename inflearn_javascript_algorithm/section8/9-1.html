@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9. 동전 교환 </title>
+</head>
+<body>
+    <script>
+        function solution(num, arr){
+            let answer = 0;
+            let reversedArr = arr.reverse();
+            let remainder = 0;
+
+            for(let i = 0 ; i < reversedArr.length ; i++){
+                answer += Math.floor(num / reversedArr[i]);
+                num = num % reversedArr[i];
+                if(num === 0) break;
+            }
+            return answer;
+        }
+
+
+        let arr=[1, 2, 5];
+        console.log(solution(15, arr))
+    </script>
+</body>
+</html>
