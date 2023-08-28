@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10. 순열 구하기</title>
+</head>
+<body>
+    <script>
+        function solution(num, arr){
+            let answer = [];
+            let ch = Array.from({length:num}, ()=>0);
+
+            function DFS(L){
+
+                if(L === num){
+                    console.log(ch);
+                    answer.push(ch.slice());
+                }else{
+                    for(let i = 0 ; i < arr.length ; i++){
+                        if(L > 0 && L - 1 == i) continue;
+                        ch[L] = arr[i];
+                        DFS(L+1);
+                    }
+                }
+            }
+            DFS(0);
+            return answer;
+        }
+
+        let arr=[3, 6 ,9];
+        console.log(solution(2, arr))
+    </script>
+</body>
+</html>
