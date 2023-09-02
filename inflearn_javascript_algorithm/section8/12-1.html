@@ -6,23 +6,22 @@
     <title>12. 조합의 경우수 </title>
 </head>
 <body>
+    <!-- 강의를 보고 업데이트 -->
     <script>
         function solution(n, r){
-            let answer = 1;
+            let answer;
 
-            function DFS(L, num){
-                if(L < 1){
-                    return 0;
-                }else if(L == 0){
+            function DFS(n, r){
+                if(n <= 1 || r <= 0 || n === r){
                     return 1;
                 }else{
-                    return DFS(L-1, num -1) + DFS(L-1, num); 
+                    return DFS(n-1, r-1) + DFS(n-1, r); 
                 }
             }
             answer = DFS(n, r);
             return answer;
         }
-        console.log(solution(2, 1))
+        console.log(solution(33, 19));
     </script>
 </body>
 </html>
