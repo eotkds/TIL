@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>15. 수들의 조합</title>
+</head>
+<body>
+    <!-- 강의를 보고 -->
+    <script>
+        function solution(arr, n, m){
+            let answer = [];
+            let p = Array.from({length: n}, ()=>0);
+            function DFS(L, s){
+                if(L === n){
+                    console.log(p);
+                }
+                if(L === n){
+                    let sum = p.reduce((acc, cur) => acc + cur, 0);
+                    if(sum % m === 0) {
+                        answer.push(p.slice());
+                    } 
+                }else{
+                    for(let i = s ; i < arr.length ; i++){
+                        p[L] = arr[i];
+                        DFS(L+1, i + 1);
+                    }
+                }
+            }
+            DFS(0, 0);
+            return answer;
+        }
+        let arr=[2, 4, 5, 8, 12];
+        console.log(solution(arr, 3, 6));
+    </script>
+</body>
+</html>
