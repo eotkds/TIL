@@ -6,7 +6,6 @@
     <title>14. 조합 구하기</title>
 </head>
 <body>
-    <!-- 강의를 보고 -->
     <script>
         function solution(n, m){
             let answer = [];
@@ -28,7 +27,7 @@
                                 flag++;
                             }
                         }
-                        if(flag === 2) return;
+                        if(flag === m) return;
                         flag = 0;
                     }
                     answer.push(p.slice());
