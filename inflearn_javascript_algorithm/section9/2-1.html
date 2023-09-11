@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2. 경로탐색(인접리스트)</title>
+</head>
+<body>
+    <!-- 강의롤 보고 -->
+    <script>
+        function solution(n, arr){
+            let answer = [];
+            let graph = Array.from({length: n+1}, ()=> Array());
+            for(let [a, b] of arr){
+                graph[a].push(b);
+            }
+            let ch = Array.from({length:n +1}, ()=> 0);
+            let path = [];
+            console.log(graph);
+            function DFS(V){
+                if(V === n){
+                    console.log(path);
+                    answer.push(path.slice());
+                    return;
+                }else{
+                    for(let i = 0 ; i < graph[V].length ; i++){
+                        let next= graph[V][i];
+                        if(ch[next] === 0){
+                            path.push(next);
+                            ch[next] = 1;
+                            DFS(next);
+                            ch[next] = 0;
+                            path.pop();
+                        }
+                    }
+                }
+            }
+            path.push(1);
+            ch[1] = 1;
+            DFS(1);
+            
+            return answer;
+        }
+        let arr=[[1, 2], [1, 3], [1, 4], [2, 1], [2, 3], [2, 5], [3, 4], [4, 2], [4, 5]];
+        console.log(solution(5, arr));
+    </script>
+</body>
+</html>
