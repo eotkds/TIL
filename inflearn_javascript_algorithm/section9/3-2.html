@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3. 미로탐색</title>
+</head>
+<body>
+    <!-- 강의를 보고 -->
+    <script>
+        function solution(arr){
+            let answer = 0;
+            let answerArr = [];
+            let len = arr.length;
+            let mx = [0, 1, 0,  -1];
+            let my = [-1, 0, 1, 0];
+            let path = [];
+            function DFS(V){
+                if(V[0] === 6 && V[1] === 6){
+                    answerArr.push(path.slice());
+                    answer++;
+                    return;
+                }else{
+                    for(let i = 0 ; i < 4 ; i++){
+                        let x = V[0] + mx[i];
+                        let y = V[1] + my[i];
+                        if(x >= 0 && y >= 0 && x < len && y < len && arr[x][y] === 0 ){
+                            arr[x][y] = 1;
+                            path.push([x, y]);
+                            DFS([x, y]);
+                            arr[x][y] = 0;
+                            path.pop();
+                        }
+                    }
+                }
+            }
+            path.push([0,0]);
+            arr[0][0] = 1;
+            DFS([0, 0]);
+            return answerArr;
+        }
+        let arr=[[0, 0, 0, 0, 0, 0, 0], 
+                [0, 1, 1, 1, 1, 1, 0],
+                [0, 0, 0, 1, 0, 0, 0],
+                [1, 1, 0, 1, 0, 1, 1],
+                [1, 1, 0, 0, 0, 0, 1],
+                [1, 1, 0, 1, 1, 0, 0],
+                [1, 0, 0, 0, 0, 0, 0]];
+        console.log(solution(arr));
+    </script>
+</body>
+</html>

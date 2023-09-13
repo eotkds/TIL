@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3. 미로탐색</title>
+</head>
+<body>
+    <script>
+        function solution(arr){
+            let answer = 0;
+            let answerArr = [];
+            // console.log(ch);
+            // return
+            let destination = [7, 7];
+            let path = [];
+            function DFS(V){
+                let [h, c] = V;
+                if(h === 6 && c === 6){
+                    answerArr.push(path.slice());
+                    answer++;
+                    return;
+                }else{
+                    // console.log(h, c);
+                    if(arr[h+1] && arr[h+1][c] === 0){
+                        arr[h+1][c] = 1;
+                        path.push([h+1, c]);
+                        DFS([h+1, c]);
+                        path.pop();
+                        arr[h+1][c] = 0;
+                    }
+                    if(arr[h-1] && arr[h-1][c] === 0){
+                        arr[h-1][c] = 1;
+                        path.push([h-1, c]);
+                        DFS([h-1, c]);
+                        path.pop();
+                        arr[h-1][c] = 0;
+                    }
+                    if(arr[h] && arr[h][c+1] === 0){
+                        arr[h][c+1] = 1;
+                        path.push([h, c+1]);
+                        DFS([h, c+1]);
+                        path.pop();
+                        arr[h][c+1] = 0;
+                    }
+                    if(arr[h] && arr[h][c-1] === 0){
+                        arr[h][c-1] = 1;
+                        path.push([h, c-1]);
+                        DFS([h, c-1]);
+                        path.pop();
+                        arr[h][c-1] = 0;
+                    }
+                }
+            }
+            path.push([0,0]);
+            arr[0][0] = 1;
+            DFS([0, 0]);
+            console.log(answerArr);
+            return answer;
+        }
+        let arr=[[0, 0, 0, 0, 0, 0, 0], 
+                [0, 1, 1, 1, 1, 1, 0],
+                [0, 0, 0, 1, 0, 0, 0],
+                [1, 1, 0, 1, 0, 1, 1],
+                [1, 1, 0, 0, 0, 0, 1],
+                [1, 1, 0, 1, 1, 0, 0],
+                [1, 0, 0, 0, 0, 0, 0]];
+        console.log(solution(arr));
+    </script>
+</body>
+</html>
