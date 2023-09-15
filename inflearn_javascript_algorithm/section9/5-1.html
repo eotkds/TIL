@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5. 송아지 찾기(BFS : 상대트리탐색)</title>
+</head>
+<body>
+    <script>
+        function solution(n, d){
+            let path = [];
+            let jump = [1, -1, 5];
+            let level = {};
+            let flag = true;
+            path.push(n);
+            level[5] = 0;
+
+            while(flag){
+                console.log(path);
+                let start = path.shift();
+                for(let move of jump){
+                    let des = start + move;
+                    if(des === d ) {
+                        flag = false;
+                        level[des] = level[start] + 1;
+                        break;
+                    }
+                    if(des in level) continue;
+                    path.push(des);
+                    level[des] = level[start] + 1;
+                }
+            }
+            
+            return level[d];
+        }
+        console.log(solution(5, 14));
+    </script>
+</body>
+</html>

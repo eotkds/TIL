@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4. 이진트리 넓이우선탐색</title>
+</head>
+<body>
+    <!-- 강의를 보고 -->
+    <script>
+        function solution(n){
+            let queue = []
+            queue.push(1);
+            while(queue.length > 0){
+                let v = queue.shift();
+                console.log(v);
+                for(let level of [v*2, v*2 +1]){
+                    if(level > n){
+                        break;
+                    }
+                    queue.push(level);
+                }
+            }
+            return;
+        }
+        console.log(solution(7));
+    </script>
+</body>
+</html>
