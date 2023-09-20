@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6. 섬나라 아일랜드(BFS)</title>
+</head>
+<body>
+    <script>
+        function solution(n, arr){
+            let answer = 0;
+            let len = arr.length;
+            // 북 북동 동 남동 남 남서 서 북서
+            let mx = [ -1, -1, 0,  1, 1,  1,  0, -1];
+            let my = [  0,  1, 1,  1, 0, -1, -1, -1];
+            let path = [];
+            for(let i = 0 ; i < len ; i++){
+                for(let j = 0 ; j < len ; j++){
+                    if(arr[i][j] === 1 ){
+                        path.push([i,j]);
+                        arr[i][j] = 0;
+                        answer++;
+                        while(path.length){
+                            let [x, y] = path.shift();
+                            for(let k = 0 ; k < mx.length ; k++){
+                                let nx = x + mx[k];
+                                let ny = y + my[k];
+                                if(nx >= 0 && nx < len && ny >= 0 && ny < len && arr[nx][ny] === 1 ){
+                                    path.push([nx, ny]);
+                                    arr[nx][ny] = 0;
+                                } 
+                            }
+                        }
+
+                    }
+                }
+            }
+
+            return answer;
+        }
+
+        let arr=[[1, 1, 0, 0, 0, 1, 0], 
+                 [0, 1, 1, 0, 1, 1, 0],
+                 [0, 1, 0, 0, 0, 0, 0],
+                 [0, 0, 0, 1, 0, 1, 1],
+                 [1, 1, 0, 1, 1, 0, 0],
+                 [1, 0, 0, 0, 1, 0, 0],
+                 [1, 0, 1, 0, 1, 0, 0]];
+
+        console.log(solution(7, arr));
+    </script>
+</body>
+</html>
