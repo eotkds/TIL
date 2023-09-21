@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1. 계단오르기</title>
+</head>
+<body>
+    <script>
+        function solution(n){
+            let answer = 0;
+            let path = [];
+            function DFS(v){
+                if(v > n) return;
+                if(v === n){
+                    answer++;
+                    return;
+                }else{
+                    for(let nx of [v+1, v+2]){
+                        DFS(nx);
+                    }
+                }
+            }
+            DFS(0);
+            return answer;
+        }
+        console.log(solution(7));
+    </script>
+</body>
+</html>
