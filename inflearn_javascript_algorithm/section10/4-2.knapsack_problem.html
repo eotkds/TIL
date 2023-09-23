@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.동전교환(knapsack_problem)</title>
+</head>
+<body>
+    <!-- 강의를 보고 -->
+    <script>
+        function solution(n, arr){
+            let answer = 0;
+            let dy = Array.from({length: n + 1}, ()=> n);
+            // console.log(dy);
+            dy[0] = 0;
+
+            for(let i = 0 ; i < arr.length ; i++){
+                let coin =  arr[i];
+                for(let j = coin ; j < dy.length ; j++){
+                    dy[j] = dy[j - coin] + 1;
+                }
+            }
+            answer = dy[n];
+            return answer;
+        }
+        let arr=[1, 2, 5];
+        console.log(solution(15, arr));
+    </script>
+</body>
+</html>
