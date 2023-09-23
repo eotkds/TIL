@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.동전교환(knapsack_problem)</title>
+</head>
+<body>
+    <script>
+        function solution(n, arr){
+            let answer = 0;
+            let change = n;
+            for(let i = arr.length - 1 ; i >= 0 ; i--){
+                let coin =  Math.floor(change / arr[i]);
+                answer+= coin;
+                change = change % arr[i];
+            }
+            return answer;
+        }
+        let arr=[1, 2, 5];
+        console.log(solution(15, arr));
+    </script>
+</body>
+</html>
